@@ -84,6 +84,6 @@
     "build": "npm run build:css && npm run build:js",
     "dev": "budo src/scripts/app.js -d public -s js/scripts.js -l -P",
     "discify": "cross-env NODE_ENV=${ENV:=production} browserify --full-paths -g envify --debug -e src/scripts/app.js | uglifyjs -c warnings=false -m | discify > public/disc.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\""
   }
 }
