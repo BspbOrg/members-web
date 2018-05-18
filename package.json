@@ -52,7 +52,7 @@
     "angulartics": "^1.6.0",
     "angulartics-google-analytics": "^0.5.0",
     "autoprefixer": "^8.5.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.1.1",
     "browserify": "^16.2.2",
     "browserify-ngannotate": "^2.0.0",
     "browserify-shim": "^3.8.14",
