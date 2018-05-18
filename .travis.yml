@@ -5,7 +5,7 @@ cache:
     - node_modules
 before_install: npm install -g greenkeeper-lockfile@1
 before_script: greenkeeper-lockfile-update
-script: npm test
+script: npm run build && npm test
 after_script: greenkeeper-lockfile-upload
 before_deploy: npm run build
 deploy:
