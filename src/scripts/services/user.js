@@ -4,19 +4,17 @@
 var angular = require('angular')
 
 require('../app')
-  .service('user', /* @ngInject */function ($q, $cookies, api) {
+  .service('user', /* @ngInject */function ($q, $cookies, api, CSRF_COOKIE, CSRF_HEADER) {
     var service = this
 
     var _identity
-
-    var _sessionKey = service.sessionKey = 'bspb-csrf-token'
 
     service.isResolved = function () {
       return angular.isDefined(_identity)
     }
 
     service.isAuthenticated = function () {
-      return angular.isDefined($cookies.get(_sessionKey))
+      return angular.isDefined($cookies.get(CSRF_COOKIE))
     }
     service.hasRole = function (role) {
       if (!service.isAuthenticated()) return false
@@ -40,7 +38,7 @@ require('../app')
     service.setIdentity = function (identity) {
       _identity = identity
       if (identity == null) {
-        $cookies.remove(_sessionKey)
+        $cookies.remove(CSRF_COOKIE)
       }
     }
 
@@ -51,8 +49,8 @@ require('../app')
       }
       return api.session.login(credentials).then(function (response) {
         if (response.data.success) {
-          $cookies.put(_sessionKey, response.data.csrfToken)
-          service.setIdentity(response.data.user)
+          $cookies.put(CSRF_COOKIE, response.data.token)
+          service.setIdentity(response.data.data)
           return _identity
         }
 
@@ -61,8 +59,9 @@ require('../app')
     }
 
     service.logout = function () {
-      api.session.logout()
-      service.setIdentity(null)
+      api.session.logout().then(function () {
+        service.setIdentity(null)
+      })
     }
 
     service.resolve = function (silent) {
@@ -74,20 +73,22 @@ require('../app')
         return deferred.promise
       }
 
-      api.session.restore($cookies.get(_sessionKey), {
+      api.session.restore({
         skipSessionExpiredInterceptor: silent
       }).then(function (response) {
         if (response.data.success) {
-          $cookies.put(_sessionKey, response.data.csrfToken)
-          service.setIdentity(response.data.user)
+          service.setIdentity(response.data.data)
           deferred.resolve(_identity)
         } else {
           deferred.reject(response.data)
         }
       }, function (response) {
+        service.setIdentity(null)
         if (response.status === 400) {
-          service.setIdentity(null)
           return deferred.reject(response.data)
+        }
+        if (response.status === 401) {
+          $cookies.remove(CSRF_COOKIE)
         }
         deferred.reject(response)
       })

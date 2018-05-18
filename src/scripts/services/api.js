@@ -15,13 +15,10 @@ require('../app').service('api', /* @ngInject */function ($log, $http, $resource
         withCredentials: true
       })
     },
-    restore: function (xsrf, opts) {
+    restore: function (opts) {
       return $http(angular.extend({
-        method: 'PUT',
-        url: ENDPOINT_URL + '/session',
-        data: {
-          csrfToken: xsrf
-        },
+        method: 'GET',
+        url: ENDPOINT_URL + '/me',
         withCredentials: true
       }, opts))
     },
@@ -42,7 +39,8 @@ require('../app').service('api', /* @ngInject */function ($log, $http, $resource
     logout: function () {
       return $http({
         method: 'DELETE',
-        url: ENDPOINT_URL + '/session'
+        url: ENDPOINT_URL + '/session',
+        withCredentials: true
       })
     },
     changePassword: function (userId, oldPassword, newPassword) {
