@@ -2,7 +2,7 @@
  * Created by groupsky on 28.10.16.
  */
 
-const angular = require('angular')
+var angular = require('angular')
 
 require('../app').run(/* @ngInject */function ($rootScope, $uibModal) {
   $rootScope.showTos = function () {
