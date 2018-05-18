@@ -8,9 +8,12 @@ require('../app')
   .config(/* @ngInject */function ($translateProvider, ENDPOINT_URL) {
     $translateProvider.useSanitizeValueStrategy('escape')
     $translateProvider.translations('bg', require('../../../i18n/bg.json'))
+    $translateProvider.translations('en', require('../../../i18n/en.json'))
     $translateProvider
-      .registerAvailableLanguageKeys([ 'bg' ], {
-        '*': 'bg'
+      .registerAvailableLanguageKeys([ 'bg', 'en' ], {
+        'en_*': 'en',
+        'bg_*': 'bg',
+        '*': 'en'
       })
       .determinePreferredLanguage()
       .preferredLanguage('bg')

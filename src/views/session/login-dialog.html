@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h3 class="modal-title">Оторизация</h3>
+  <h3 class="modal-title" translate>LOGIN_TITLE</h3>
 </div>
 <div class="modal-body">
   <div
@@ -29,8 +29,9 @@
       <div class="form-actions">
         <button type="submit" ng-disabled="form.$invalid || sessionController.loading"
                 ng-click="$close(auth)"
+                translate
                 class="btn btn-lg btn-primary">
-          Вход
+          PROFILE_BTN_LOGIN
         </button>
       </div>
     </fieldset>
