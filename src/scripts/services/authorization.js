@@ -8,7 +8,7 @@ require('../app').service('authorization', /* @ngInject */function ($log, $q, $r
   function check () {
     var isAuthenticated = user.isAuthenticated()
 
-    if ($rootScope.toState && $rootScope.toState.data && $rootScope.toState.data.roles && $rootScope.toState.data.roles.length > 0 && !user.hasAnyRole($rootScope.toState.data.roles)) {
+    if ($rootScope.toState && $rootScope.toState.data && $rootScope.toState.data.roles && $rootScope.toState.data.roles.length > 0 && !user.isInAnyRole($rootScope.toState.data.roles)) {
       if (isAuthenticated) {
         $timeout(function () {
           $state.go('forbidden')

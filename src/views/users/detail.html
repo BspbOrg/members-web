@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1 ng-if="user.data.id" class="page-header">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary"
+                            ng-disabled="user.form.$pristine || user.form.$invalid"
+                            ng-click="user.save()">
+                        {{'USER_DETAIL_BUTTON_SAVE' | translate}}
+                        <i class="fa fa-save fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+            <span ng-if="!user.data.id" translate>USER_DETAIL_TITLE_NEW</span>
+            <span ng-if="user.data.id" translate>USER_DETAIL_TITLE_EDIT</span>
+        </h1>
+    </div>
+
+    <div class="col-md-12">
+        <form name="user.form"
+              role="form"
+              autocomplete="off"
+              confirm-on-exit="user.form.$dirty"
+              confirm-message-window="{{'USER_DETAIL_UNSAVED_DATA_ALERT_TITLE' | translate}}"
+              confirm-message-route="{{'USER_DETAIL_UNSAVED_DATA_ALERT_MESSAGE' | translate}}">
+
+            <field name="firstName" type="text" required="true"
+                   label="{{'USER_DETAIL_FIRST_NAME' | translate}}"
+                   model="user.data.firstName"
+            ></field>
+
+            <field name="lastName" type="text" required="true"
+                   label="{{'USER_DETAIL_LAST_NAME' | translate}}"
+                   model="user.data.lastName"
+            ></field>
+
+            <field name="email" type="email" required="true"
+                   label="{{'USER_DETAIL_EMAIL' | translate}}" readonly="user.data.id"
+                   autocomplete="new-password"
+                   model="user.data.email"
+            ></field>
+
+            <field ng-if="!user.data.id"
+                   name="password" type="password" required="true"
+                   label="{{'USER_DETAIL_PASSWORD' | translate}}"
+                   autocomplete="new-password"
+                   model="user.data.password"
+            ></field>
+
+            <field ng-if="$user.getIdentity().id === user.data.id" language-switcher name="language" type="select"
+                   values="user.languages"
+                   label="{{'USER_DETAIL_LANGUAGE' | translate}}"
+                   model="user.data.language"
+                   on-select="$ctrl.changeLanguage(model)"></field>
+
+            <div ng-if="$user.isAdmin()">
+                <hr>
+
+                <h3 translate>USER_DETAIL_RIGHTS</h3>
+
+                <field name="role" type="select" disabled="!$user.isAdmin()"
+                       values="user.roles"
+                       label="{{'USER_DETAIL_ROLE' | translate}}"
+                       model="user.data.role"></field>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary"
+                        ng-disabled="user.form.$pristine || user.form.$invalid"
+                        ng-click="user.save()">
+                    {{'USER_DETAIL_BUTTON_SAVE' | translate}}
+                    <i class="fa fa-save fa-fw"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

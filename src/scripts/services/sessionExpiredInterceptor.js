@@ -18,9 +18,9 @@ require('../app').factory('sessionExpiredInterceptor', /* @ngInject */function (
         })
       })
       .then(function (response) {
-        if (!response.data.success) return $q.reject(response.data)
-        user.setIdentity(response.data.user)
-        return response.data.user
+        if (!response.data.$$response.success) return $q.reject(response.data)
+        user.setIdentity(response.data)
+        return response.data
       })
   }
 

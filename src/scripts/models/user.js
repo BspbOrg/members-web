@@ -16,7 +16,7 @@ require('../app').factory('User', /* @ngInject */function ($resource, $translate
     getName: function () {
       return [ this.firstName, this.lastName ].filter(function (s) { return !!s }).join(' ')
     },
-    hasRole: function (role) {
+    isInRole: function (role) {
       if (!this.roles) return false
       return this.roles.indexOf(role) !== -1
     },

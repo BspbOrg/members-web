@@ -16,11 +16,11 @@ require('../app')
     service.isAuthenticated = function () {
       return angular.isDefined($cookies.get(CSRF_COOKIE))
     }
-    service.hasRole = function (role) {
+    service.isInRole = function (role) {
       if (!service.isAuthenticated()) return false
       return _identity.role === role
     }
-    service.hasAnyRole = function (roles) {
+    service.isInAnyRole = function (roles) {
       if (!service.isAuthenticated()) return false
       return roles.some(function (role) {
         return service.isInRole(role)
@@ -28,7 +28,7 @@ require('../app')
     }
 
     service.isAdmin = function () {
-      return service.hasRole('admin')
+      return service.isInRole('admin')
     }
 
     service.getIdentity = function () {
@@ -48,9 +48,9 @@ require('../app')
         return $q.when(null)
       }
       return api.session.login(credentials).then(function (response) {
-        if (response.data.success) {
-          $cookies.put(CSRF_COOKIE, response.data.token)
-          service.setIdentity(response.data.data)
+        if (response.data.$$response.success) {
+          $cookies.put(CSRF_COOKIE, response.data.$$response.token)
+          service.setIdentity(response.data)
           return _identity
         }
 
@@ -76,8 +76,8 @@ require('../app')
       api.session.restore({
         skipSessionExpiredInterceptor: silent
       }).then(function (response) {
-        if (response.data.success) {
-          service.setIdentity(response.data.data)
+        if (response.data.$$response.success) {
+          service.setIdentity(response.data)
           deferred.resolve(_identity)
         } else {
           deferred.reject(response.data)

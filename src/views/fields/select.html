@@ -1,0 +1,14 @@
+<sb-include src="/views/fields/container.html">
+  <select
+    class="form-control"
+    id="{{::field.name}}"
+    name="{{::field.name}}"
+    aria-describedby="{{::field.name}}HelpBlock"
+    ng-model="field.model"
+    ng-required="::field.required"
+    ng-change="field.onSelect()"
+    ng-options="item.id as item.label for item in ::field.values"
+    ng-disabled="::field.disabled">
+    <option ng-if="::field.placeholder" value="">{{::field.placeholder}}</option>
+  </select>
+</sb-include>

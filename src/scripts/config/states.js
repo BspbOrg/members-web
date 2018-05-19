@@ -88,6 +88,62 @@ module.config(/* @ngInject */function ($locationProvider, $stateProvider, $urlRo
         }
       }
     })
+
+    /// ////////
+    // Users //
+    /// ////////
+    .state('auth.users', {
+      url: '/users',
+      views: {
+        'content': {
+          templateUrl: '/views/users/list.html',
+          controller: 'UsersController',
+          controllerAs: 'usersController'
+        }
+      }
+    })
+
+    /// ////////
+    // Users //
+    /// ////////
+    .state('auth.users.detail', {
+      url: '/{id:int}',
+      views: {
+        'content@auth': {
+          templateUrl: '/views/users/detail.html',
+          controller: 'UserController',
+          controllerAs: 'user'
+        }
+      }
+    })
+
+    /// ////////
+    // User New //
+    /// ////////
+    .state('auth.users.new', {
+      url: '/new',
+      views: {
+        'content@auth': {
+          templateUrl: '/views/users/detail.html',
+          controller: 'UserController',
+          controllerAs: 'user'
+        }
+      }
+    })
+
+    /// ////////
+    // User Change Password //
+    /// ////////
+    .state('auth.users.changepw', {
+      url: '/password',
+      views: {
+        'content@auth': {
+          templateUrl: '/views/users/changepw.html',
+          controller: 'UserController',
+          controllerAs: 'user'
+        }
+      }
+    })
 })
   .run(/* @ngInject */function ($rootScope, $state, $stateParams, authorization, user) {
     $rootScope.$state = $state
