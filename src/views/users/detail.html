@@ -40,6 +40,12 @@
                    model="user.data.email"
             ></field>
 
+            <field name="username" type="text" required="true"
+                   label="{{'USER_DETAIL_USERNAME' | translate}}" readonly="user.data.id"
+                   autocomplete="new-password"
+                   model="user.data.username"
+            ></field>
+
             <field ng-if="!user.data.id"
                    name="password" type="password" required="true"
                    label="{{'USER_DETAIL_PASSWORD' | translate}}"
