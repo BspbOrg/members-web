@@ -30,6 +30,7 @@ var dependencies = [
   require('angular-bootstrap-lightbox') && 'bootstrapLightbox',
   require('angular-translate'),
 
+  require('./members'),
   require('./users')
 ]
 

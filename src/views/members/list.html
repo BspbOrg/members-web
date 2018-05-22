@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button type="button"
+                            class="btn btn-danger"
+                            ng-disabled="!$ctrl.selectedRows.length"
+                            confirm="{{ 'MEMBER_LIST_BUTTON_DELETE_CONFIRM_MESSAGE' | translate: $ctrl.selectedRows.length }}"
+                            ng-click="$ctrl.deleteRows($ctrl.selectedRows)">
+                        <i class="fa fa-trash fa-fw"></i>
+                        {{ ::'MEMBER_LIST_BUTTON_DELETE' | translate }}
+                        <span ng-if="$ctrl.selectedRows.length > 1" class="badge">{{ $ctrl.selectedRows.length}}</span>
+                    </button>
+                    <a role="button"
+                       class="btn btn-primary"
+                       ui-sref=".new"
+                    >
+                        <i class="fa fa-file-o fa-fw"></i>
+                        {{ ::'MEMBER_LIST_BUTTON_NEW' | translate }}
+                    </a>
+                </div>
+            </div>
+            {{ ::'MEMBER_LIST_TITLE_PRIMARY' | translate}}
+            <small translate>MEMBER_LIST_TITLE_SECONDARY</small>
+        </h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <form role="form" class="form form-filter">
+
+                    <div class="form-group">
+                        <label translate>MEMBER_LIST_FILTER_SEARCH</label>
+                        <input name="search" type="text" class="form-control"
+                               ng-model="data.filter.search"
+                        />
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="col-md-1" sortable-column="id">#</th>
+                <th class="col-md-2" sortable-column="firstName" translate>MEMBER_LIST_TABLE_FIRST_NAME</th>
+                <th class="col-md-2" sortable-column="lastName" translate>MEMBER_LIST_TABLE_LAST_NAME</th>
+                <th class="col-md-2" sortable-column="membershipExpire|date:'yyyyMMddHHmmss'" translate>
+                    MEMBER_LIST_TABLE_MEMBERSHIP_EXPIRE
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                    ng-repeat="row in $ctrl.rows | filter:$ctrl.filterRows(data.filter) | orderBy:data.order.key:data.order.reverse"
+                    ng-click="$state.go('.detail', {id: row.id})">
+                <td>{{row.id}}</td>
+                <td>{{row.firstName}}</td>
+                <td>{{row.lastName}}</td>
+                <td>{{row.membershipExpire | date}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

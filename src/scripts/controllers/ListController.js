@@ -4,9 +4,10 @@
 
 var mapValues = require('lodash.mapvalues')
 var angular = require('angular')
-require('../app').controller('ListController', /* @ngInject */function ($state, $stateParams, $q, $translate, model, ngToast, Raven) {
+require('../app').controller('ListController', /* @ngInject */function ($state, $stateParams, $q, $translate, model, ngToast, Raven, translationPrefix) {
   var controller = this
 
+  controller.translationPrefix = translationPrefix
   controller.recordPerPage = 50
   controller.maxExportCount = 20000
   controller.filter = angular.copy($stateParams)
@@ -50,25 +51,33 @@ require('../app').controller('ListController', /* @ngInject */function ($state, 
         }
         return res
       })
-    })).then(function () {
-      ngToast.create({
-        className: 'success',
-        content: $translate.instant('Deleted {{num}} records', { num: rows.length })
+    }))
+      .then(function (res) {
+        return $translate(controller.translationPrefix + '_SUCCESS_DELETE', {count: rows.length})
+          .then(function (message) {
+            ngToast.create({
+              className: 'success',
+              content: message
+            })
+          })
+          .then(function () { return res })
       })
-      controller.selectedRows = []
-    }, function (error) {
-      Raven.captureMessage(JSON.stringify(error))
-      ngToast.create({
-        className: 'danger',
-        content: '<p>' + $translate.instant('Error during deletion') + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
+      .catch(function (error) {
+        Raven.captureMessage(JSON.stringify(error))
+        $translate(controller.translationPrefix + '_ERROR_DELETE')
+          .then(function (message) {
+            ngToast.create({
+              className: 'danger',
+              content: '<p>' + message + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
+            })
+          })
+        return $q.reject(error)
       })
-      return $q.reject(error)
-    })
   }
 
   function fetch (query) {
     controller.loading = true
-    return model.query(angular.extend({}, query, { context: controller.context })).$promise
+    return model.query(angular.extend({}, query, {context: controller.context})).$promise
       .then(function (rows) {
         controller.count = rows.$$response.data.$$response.count
         Array.prototype.push.apply(controller.rows, rows)
@@ -87,23 +96,34 @@ require('../app').controller('ListController', /* @ngInject */function ($state, 
         selection.push(row.id)
       })
     }
-    return model.export(angular.extend({}, controller.filter, {
-      limit: -1,
-      offset: 0,
-      outputType: outputType,
-      selection: selection
-    })).$promise
+    return model
+      .export(angular.extend({}, controller.filter, {
+        limit: -1,
+        offset: 0,
+        outputType: outputType,
+        selection: selection
+      }))
+      .$promise
       .then(function (res) {
-        ngToast.create({
-          className: 'success',
-          content: $translate.instant('You will be notified by email when your export is ready')
-        })
+        return $translate(controller.translationPrefix + '_SUCCESS_EXPORT')
+          .then(function (message) {
+            ngToast.create({
+              className: 'success',
+              content: message
+            })
+          })
+          .then(function () { return res })
       })
       .catch(function (error) {
-        ngToast.create({
-          className: 'danger',
-          content: '<p>' + $translate.instant('Error during export') + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
-        })
+        Raven.captureMessage(JSON.stringify(error))
+        $translate(controller.translationPrefix + '_ERROR_EXPORT')
+          .then(function (message) {
+            ngToast.create({
+              className: 'danger',
+              content: '<p>' + message + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
+            })
+          })
+        return $q.reject(error)
       })
   }
 

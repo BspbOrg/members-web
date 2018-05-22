@@ -16,7 +16,8 @@ module.exports = /* @ngInject */ function ($stateProvider) {
       resolve: {
         model: /* @ngInject */function (User) {
           return User
-        }
+        },
+        translationPrefix: function () { return 'USER' }
       }
     })
 

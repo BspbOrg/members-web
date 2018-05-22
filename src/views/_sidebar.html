@@ -8,6 +8,12 @@
                 </a>
             </li>
             <li ng-if="$root.$user.isAdmin()">
+                <a ui-sref="auth.members" ui-sref-active="active">
+                    <i class="fa fa-users fa-fw"></i>
+                    <translate>NAV_MEMBERS</translate>
+                </a>
+            </li>
+            <li ng-if="$root.$user.isAdmin()">
                 <a ui-sref="auth.users" ui-sref-active="active">
                     <i class="fa fa-users fa-fw"></i>
                     <translate>NAV_USERS</translate>
