@@ -1,19 +1,15 @@
-/**
- * Created by groupsky on 13.01.16.
- */
-
 var angular = require('angular')
 
-require('../app').controller('UserController', /* @ngInject */function ($scope, $state, $stateParams, $q, $timeout, $translate, api, ngToast, user, User, Raven) {
+module.exports = /* @ngInject */function ($scope, $state, $stateParams, $q, $timeout, $translate, api, ngToast, user, User, Raven) {
   var controller = this
 
   var id = $stateParams.id || $stateParams.fromId
 
-  controller.data = id ? User.get({ id: id }) : new User()
+  controller.data = id ? User.get({id: id}) : new User()
   controller.data.id = id
   controller.roles = [
-    { id: 'user', label: $translate.instant('USER_DETAIL_ROLE_USER') },
-    { id: 'admin', label: $translate.instant('USER_DETAIL_ROLE_ADMIN') }
+    {id: 'user', label: $translate.instant('USER_DETAIL_ROLE_USER')},
+    {id: 'admin', label: $translate.instant('USER_DETAIL_ROLE_ADMIN')}
   ]
   controller.languages = $translate.getAvailableLanguageKeys().map(function (key) {
     return {
@@ -46,7 +42,7 @@ require('../app').controller('UserController', /* @ngInject */function ($scope, 
         return $q.reject(error)
       })
       .then(function (res) {
-        $state.go('^.detail', { id: res.id }, { location: 'replace' })
+        $state.go('^.detail', {id: res.id}, {location: 'replace'})
       })
   }
 
@@ -82,4 +78,4 @@ require('../app').controller('UserController', /* @ngInject */function ($scope, 
       })
     }, angular.noop)
   })()
-})
+}

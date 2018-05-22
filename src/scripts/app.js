@@ -28,7 +28,9 @@ var dependencies = [
   require('angular-file-upload') && 'angularFileUpload',
   require('ngstorage').name,
   require('angular-bootstrap-lightbox') && 'bootstrapLightbox',
-  require('angular-translate')
+  require('angular-translate'),
+
+  require('./users')
 ]
 
 var app = module.exports = angular.module('members', dependencies)

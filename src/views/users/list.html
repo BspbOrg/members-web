@@ -65,7 +65,7 @@
       </thead>
       <tbody>
       <tr
-        ng-repeat="row in rows | filter:usersController.filterRows(data.filter) | orderBy:data.order.key:data.order.reverse"
+        ng-repeat="row in usersController.rows | filter:usersController.filterRows(data.filter) | orderBy:data.order.key:data.order.reverse"
         ng-click="$state.go('.detail', {id: row.id})">
         <td>{{row.id}}</td>
         <td>{{row.email}}</td>
