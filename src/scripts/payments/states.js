@@ -1,44 +1,44 @@
 module.exports = /* @ngInject */function ($stateProvider) {
   $stateProvider
-    .state('auth.members', {
-      url: '/members',
+    .state('auth.payments', {
+      url: '/payments',
       views: {
         'content': {
-          templateUrl: '/views/members/list.html',
+          templateUrl: '/views/payments/list.html',
           controller: 'ListController',
           controllerAs: '$ctrl'
         }
       },
       resolve: {
-        model: /* @ngInject */function (Member) { return Member },
-        translationPrefix: function () { return 'MEMBER' }
+        model: /* @ngInject */function (Payment) { return Payment },
+        translationPrefix: function () { return 'PAYMENT' }
       }
     })
-    .state('auth.members.detail', {
+    .state('auth.payments.detail', {
       url: '/{id:int}',
       views: {
         'content@auth': {
-          templateUrl: '/views/members/detail.html',
-          controller: 'MemberController',
+          templateUrl: '/views/payments/detail.html',
+          controller: 'ModelController',
           controllerAs: '$ctrl'
         }
       }
     })
-    .state('auth.members.detail.edit', {
+    .state('auth.payments.detail.edit', {
       url: '/edit',
       views: {
         'content@auth': {
-          templateUrl: '/views/members/edit.html',
-          controller: 'MemberController',
+          templateUrl: '/views/payments/edit.html',
+          controller: 'ModelController',
           controllerAs: '$ctrl'
         }
       }
     })
-    .state('auth.members.new', {
+    .state('auth.payments.new', {
       url: '/new',
       views: {
         'content@auth': {
-          templateUrl: '/views/members/edit.html',
+          templateUrl: '/views/payments/edit.html',
           controller: 'ModelController',
           controllerAs: '$ctrl'
         }

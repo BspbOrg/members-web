@@ -1,0 +1,9 @@
+<button type="button"
+        class="btn btn-danger"
+        ng-disabled="$ctrl.disabled"
+        confirm="{{ $ctrl.translationPrefix+'_BUTTON_DELETE_CONFIRM_MESSAGE' | translate: $ctrl.translationParams }}"
+        ng-click="$ctrl.delete">
+    <i class="fa fa-trash fa-fw"></i>
+    {{ ::$ctrl.translationPrefix+'_BUTTON_DELETE' | translate }}
+    <span ng-if="$ctrl.selectedRows.length > 1" class="badge">{{ $ctrl.selectedRows.length}}</span>
+</button>

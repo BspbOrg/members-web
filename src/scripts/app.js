@@ -30,11 +30,15 @@ var dependencies = [
   require('angular-bootstrap-lightbox') && 'bootstrapLightbox',
   require('angular-translate'),
 
+  require('./generic'),
   require('./members'),
+  require('./payments'),
   require('./users')
 ]
 
 var app = module.exports = angular.module('members', dependencies)
+
+require('./demo')
 
 raven
   .addPlugin(require('raven-js/plugins/angular'), angular)
@@ -44,7 +48,6 @@ app.run(/* @ngInject */function ($rootScope) {
   $rootScope.$system = info
 })
 
-// semicolon is required because bulk is transformed into ({}) and that is evaluated as a function call to above statement
-; // eslint-disable-line semi
 // include all js files
-bulk(__dirname, [ './**/!(app|*.spec).js' ])
+// eslint-disable-next-line
+var includes = bulk(__dirname, ['./**/!(app|*.spec).js'])

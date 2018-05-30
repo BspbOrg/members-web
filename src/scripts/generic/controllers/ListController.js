@@ -1,17 +1,14 @@
-/**
- * Created by groupsky on 08.01.16.
- */
-
 var mapValues = require('lodash.mapvalues')
 var angular = require('angular')
-require('../app').controller('ListController', /* @ngInject */function ($state, $stateParams, $q, $translate, model, ngToast, Raven, translationPrefix) {
+module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, model, ngToast, Raven, translationPrefix) {
   var controller = this
 
-  controller.translationPrefix = translationPrefix
-  controller.recordPerPage = 50
-  controller.maxExportCount = 20000
-  controller.filter = angular.copy($stateParams)
   controller.canExport = true
+  controller.filter = angular.copy($stateParams)
+  controller.maxExportCount = 20000
+  controller.recordPerPage = 50
+  controller.selectedRows = []
+  controller.translationPrefix = translationPrefix
 
   controller.updateFilter = function () {
     var filter = mapValues(controller.filter, function (value) {
@@ -76,17 +73,26 @@ require('../app').controller('ListController', /* @ngInject */function ($state, 
   }
 
   function fetch (query) {
-    controller.loading = true
-    return model.query(angular.extend({}, query, {context: controller.context})).$promise
+    if (controller.pending && controller.pending.$cancelRequest) {
+      controller.pending.$cancelRequest()
+    }
+    var q = controller.loading = angular.extend({}, query, {context: controller.context})
+    controller.pending = model.query(q)
+    controller.pending.$promise
       .then(function (rows) {
-        controller.count = rows.$$response.data.$$response.count
+        if (!angular.equals(controller.loading, q)) return
+        controller.count = rows.$$response && rows.$$response.data && rows.$$response.data.$$response && rows.$$response.data.$$response.count
         Array.prototype.push.apply(controller.rows, rows)
         controller.endOfPages = !rows.length
         return controller.rows
       })
       .finally(function () {
-        controller.loading = false
+        if (angular.equals(controller.loading, q)) {
+          controller.loading = false
+          controller.pending = null
+        }
       })
+    return controller.pending.$promise
   }
 
   controller.export = function (outputType) {
@@ -141,4 +147,4 @@ require('../app').controller('ListController', /* @ngInject */function ($state, 
       limit: count || controller.recordPerPage
     }))
   }
-})
+}

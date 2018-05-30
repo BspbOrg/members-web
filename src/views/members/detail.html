@@ -3,62 +3,54 @@
         <h1 class="page-header">
             <div class="pull-right">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary"
-                            ng-disabled="$ctrl.form.$pristine || $ctrl.form.$invalid"
-                            ng-click="$ctrl.save()">
-                        {{::$ctrl.translationPrefix+'_DETAIL_BUTTON_SAVE' | translate}}
-                        <i class="fa fa-save fa-fw"></i>
-                    </button>
+                    <a role="button"
+                       class="btn btn-primary"
+                       ui-sref=".edit">
+                        {{::$ctrl.translationPrefix+'_DETAIL_BUTTON_EDIT' | translate}}
+                        <i class="fa fa-edit fa-fw"></i>
+                    </a>
                 </div>
             </div>
-            <span ng-if="!$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_DETAIL_TITLE_NEW</span>
-            <span ng-if="$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_DETAIL_TITLE_EDIT</span>
+            {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
         </h1>
     </div>
 
     <div class="col-md-12">
-        <form name="$ctrl.form"
-              role="form"
-              autocomplete="off"
-              confirm-on-exit="$ctrl.form.$dirty"
-              confirm-message-window="{{::$ctrl.translationPrefix+'_DETAIL_UNSAVED_DATA_ALERT_TITLE' | translate}}"
-              confirm-message-route="{{::$ctrl.translationPrefix+'_DETAIL_UNSAVED_DATA_ALERT_MESSAGE' | translate}}">
-
-            <field name="firstName" type="text" required="true"
-                   label="{{::$ctrl.translationPrefix+'_DETAIL_FIRST_NAME' | translate}}"
-                   model="$ctrl.data.firstName"
-            ></field>
-
-            <field name="lastName" type="text" required="true"
-                   label="{{::$ctrl.translationPrefix+'_DETAIL_LAST_NAME' | translate}}"
-                   model="$ctrl.data.lastName"
-            ></field>
-
-            <field name="email" type="email" required="true"
-                   label="{{::$ctrl.translationPrefix+'_DETAIL_EMAIL' | translate}}"
-                   model="$ctrl.data.email"
-            ></field>
-
-            <field name="username" type="text" required="true"
-                   label="{{::$ctrl.translationPrefix+'_DETAIL_USERNAME' | translate}}"
-                   model="$ctrl.data.username"
-            ></field>
-
-        </form>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="pull-right">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary"
-                        ng-disabled="$ctrl.form.$pristine || $ctrl.form.$invalid"
-                        ng-click="$ctrl.save()">
-                    {{::$ctrl.translationPrefix+'_DETAIL_BUTTON_SAVE' | translate}}
-                    <i class="fa fa-save fa-fw"></i>
-                </button>
+        <h3>
+            {{::$ctrl.data.firstName}} {{::$ctrl.data.middleName}} {{::$ctrl.data.lastName}}
+            <small>{{::$ctrl.data.category}}</small>
+        </h3>
+        <div class="row">
+            <div class="col-md-4">
+                <i class="fa fa-mobile-phone"></i>
+                {{::$ctrl.data.phone}}
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-at"></i>
+                {{::$ctrl.data.email}}
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-envelope"></i>
+                {{::$ctrl.data.address}},
+                {{::$ctrl.data.city}}, {{::$ctrl.data.postalCode}},
+                {{::$ctrl.data.country}}
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-user"></i>
+                {{::$ctrl.data.username}}
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-address-card"></i>
+                {{::$ctrl.data.cardId}}
+            </div>
+            <div class="col-md-4">
+                <i class="fa fa-database"></i>
+                {{::$ctrl.data.accessId}}
             </div>
         </div>
+    </div>
+
+    <div class="col-md-12">
+        <list-payments member-id="$ctrl.data.id"></list-payments>
     </div>
 </div>
