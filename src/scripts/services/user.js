@@ -4,7 +4,7 @@
 var angular = require('angular')
 
 require('../app')
-  .service('user', /* @ngInject */function ($q, api) {
+  .service('user', /* @ngInject */function ($cookies, $q, api, CSRF_COOKIE) {
     var service = this
 
     var _identity
