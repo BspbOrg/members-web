@@ -34,7 +34,7 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       $scope.form = formCtrl
     },
     controllerAs: 'field',
-    controller: /* @ngInject */function ($scope, $attrs, $filter, $parse, $rootElement, $timeout, $translate) {
+    controller: /* @ngInject */function ($scope, $attrs, $filter, $injector, $parse, $rootElement, $timeout, $translate) {
       var field = this
 
       while (!field.name || $rootElement.querySelectorAll('#' + field.name).length) {
@@ -73,25 +73,43 @@ require('../app').directive('field', /* @ngInject */function ($q) {
         if (!args) {
           args = {}
         } else if (!angular.isObject(args)) {
-          args = { $arg: args }
+          args = {$arg: args}
         }
         $timeout(function () {
           if (angular.isFunction(field.select)) {
-            field.select(angular.extend({}, args, { model: field.model }))
+            field.select(angular.extend({}, args, {model: field.model}))
           }
         })
       }
 
+      if ($attrs.valuesModel) {
+        var valueModel = $injector.get($attrs.valuesModel)
+        valueModel.query({}).$promise.then(function (list) {
+          field.values = list
+        })
+      }
+
+      Object.defineProperty(field, 'values', {
+        get: function () { return field._values },
+        set: function (v) {
+          field._values = v.map(function (item) {
+            return {
+              id: item.id,
+              label: item.label ? $translate.instant(item.label) : item.toString()
+            }
+          })
+        }
+      })
+
       switch ($attrs.type) {
         case 'date':
-        case 'time': {
+        case 'time':
           $scope.$watch('field.model', function () {
             if (angular.isString(field.model)) {
               field.model = moment(field.model).toDate()
             }
           })
           break
-        }
       }
     }
   }

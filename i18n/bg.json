@@ -63,5 +63,8 @@
   "PAYMENT_LABEL_AMOUNT": "Сума",
   "PAYMENT_LABEL_PAYMENT_DATE": "Дата",
   "PAYMENT_LABEL_MEMBERSHIP_TYPE": "Членство",
-  "PAYMENT_LABEL_PAYMENT_TYPE": "Вид плащане"
+  "PAYMENT_LABEL_PAYMENT_TYPE": "Вид плащане",
+  "CATEGORY_STUDENT": "Студент",
+  "CATEGORY_REGULAR": "Редовен",
+  "CATEGORY_RETIRED": "Пенсионер"
 }
