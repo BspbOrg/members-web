@@ -95,8 +95,18 @@ angular
       success: true,
       data: {id: 1, firstName: 'Admin', lastName: 'Admin', role: 'admin'}
     })
-    $httpBackend.whenGET(/^\/member(\?.+)?$/).respond(getList(members))
-    $httpBackend.whenGET(/^\/member\/(\d+)$/, undefined, ['id']).respond(getListItem(members))
+
+    function filterByMemberIds (params, item) {
+      console.debug('filterByMemberIds', params)
+      if (!params.memberIds) return true
+      if ((params.memberIds instanceof Array)) {
+        return params.memberIds.map(Number.bind(null)).indexOf(item.id) !== -1
+      }
+      return item.id === Number(params.memberIds)
+    }
+
+    $httpBackend.whenGET(/^\/member(\?.+)?$/).respond(getList(members, filterByMemberIds))
+    $httpBackend.whenGET(/^\/member\/(\d+)$/, undefined, ['id']).respond(getListItem(members, filterByMemberIds))
 
     function filterByMemberId (params, item) {
       console.debug('filterByMemberId', params)

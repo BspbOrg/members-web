@@ -1,11 +1,6 @@
 <page-header>
     <actions>
-        <a role="button"
-           class="btn btn-primary"
-           ui-sref=".edit">
-            {{::$ctrl.translationPrefix+'_DETAIL_BUTTON_EDIT' | translate}}
-            <i class="fa fa-edit fa-fw"></i>
-        </a>
+        <button-edit translation-prefix="{{::$ctrl.translationPrefix}}"></button-edit>
     </actions>
     {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
 </page-header>
@@ -22,5 +17,13 @@
             <dt>{{::$ctrl.translationPrefix+'_LABEL_PAYMENT_DATE'|translate}}</dt>
             <dd>{{::$ctrl.data.paymentDate | date}}</dd>
         </dl>
+    </div>
+
+    <div class="col-md-12">
+        <h4>
+            {{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_TITLE' | translate}}
+            <small>{{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_SUBTITLE' | translate}}</small>
+        </h4>
+        <list-members member-ids="$ctrl.data.members"></list-members>
     </div>
 </div>

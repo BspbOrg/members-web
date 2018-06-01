@@ -8,5 +8,7 @@ module.exports = require('angular')
     'bspb.payments'
   ])
   .config(require('./states'))
-  .factory('Member', require('./models/Member'))
   .controller('MemberController', require('./controllers/MemberController'))
+  .directive('listMembers', require('./directives/ListMembers'))
+  .directive('tableMembers', require('./directives/TableMembers'))
+  .factory('Member', require('./models/Member'))

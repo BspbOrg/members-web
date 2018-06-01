@@ -1,6 +1,6 @@
 module.exports = /* @ngInject */function () {
   return {
-    templateUrl: '/views/partials/_buttonNew.html',
+    templateUrl: '/views/partials/_buttonEdit.html',
     scope: {
       translationPrefix: '@?',
       translationParams: '<?'

@@ -1,21 +1,12 @@
-<div class="row">
-    <div class="col-md-12">
-        <h1 class="page-header">
-            <div class="pull-right">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary"
-                            ng-disabled="$ctrl.form.$pristine || $ctrl.form.$invalid"
-                            ng-click="$ctrl.save()">
-                        {{::$ctrl.translationPrefix+'_DETAIL_BUTTON_SAVE' | translate}}
-                        <i class="fa fa-save fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-            <span ng-if="!$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_DETAIL_TITLE_NEW</span>
-            <span ng-if="$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_DETAIL_TITLE_EDIT</span>
-        </h1>
-    </div>
+<page-header>
+    <actions>
+        <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}"></button-save>
+    </actions>
+    <span ng-if="!$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_DETAIL_TITLE_NEW</span>
+    <span ng-if="$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_DETAIL_TITLE_EDIT</span>
+</page-header>
 
+<div class="row">
     <div class="col-md-12">
         <form name="$ctrl.form"
               role="form"
@@ -48,17 +39,8 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="pull-right">
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary"
-                        ng-disabled="$ctrl.form.$pristine || $ctrl.form.$invalid"
-                        ng-click="$ctrl.save()">
-                    {{::$ctrl.translationPrefix+'_DETAIL_BUTTON_SAVE' | translate}}
-                    <i class="fa fa-save fa-fw"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+<page-footer>
+    <actions>
+        <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}"></button-save>
+    </actions>
+</page-footer>

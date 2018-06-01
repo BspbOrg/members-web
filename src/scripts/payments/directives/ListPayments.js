@@ -1,6 +1,6 @@
-module.exports = /* @ngInject */function PaymentListFactory () {
+module.exports = /* @ngInject */function () {
   return {
-    templateUrl: '/views/payments/list.html',
+    templateUrl: '/views/payments/_table.html',
     scope: {
       memberId: '<'
     },
