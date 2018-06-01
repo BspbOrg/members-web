@@ -67,6 +67,10 @@ angular
 
     var filterNoop = function () { return true }
 
+    var reduceIdFinder = function (id, found, candidate) {
+      return found || (candidate.id === id ? candidate : null)
+    }
+
     function getList (list, filter) {
       filter = filter || filterNoop
       return function (method, url, data, headers, params) {
@@ -81,10 +85,29 @@ angular
     function getListItem (list, filter) {
       filter = filter || filterNoop
       return function (method, url, data, headers, params) {
-        var item = list.filter(filter.bind(null, params)).reduce(function (found, candidate) {
-          return found || (candidate.id === Number(params.id) ? candidate : null)
-        }, null)
+        var item = list.filter(filter.bind(null, params)).reduce(reduceIdFinder.bind(null, Number(params.id)), null)
         if (item) {
+          return [200, {data: item}, {}]
+        }
+        return [404, {error: 'Not found'}, {}]
+      }
+    }
+
+    function createListItem (list) {
+      return function (method, url, data) {
+        var item = JSON.parse(data)
+        item.id = list.length + 1
+        list.push(item)
+        return [200, {data: item}, {}]
+      }
+    }
+
+    function updateListItem (list) {
+      return function (method, url, data, headers, params) {
+        var id = Number(params.id)
+        var item = list.reduce(reduceIdFinder.bind(null, id), null)
+        if (item) {
+          Object.assign(item, JSON.parse(data), {id: id})
           return [200, {data: item}, {}]
         }
         return [404, {error: 'Not found'}, {}]
@@ -106,7 +129,9 @@ angular
     }
 
     $httpBackend.whenGET(/^\/member(\?.+)?$/).respond(getList(members, filterByMemberIds))
+    $httpBackend.whenPOST('/member').respond(createListItem(members))
     $httpBackend.whenGET(/^\/member\/(\d+)$/, undefined, ['id']).respond(getListItem(members, filterByMemberIds))
+    $httpBackend.whenPOST(/^\/member\/(\d+)$/, undefined, undefined, ['id']).respond(updateListItem(members))
 
     function filterByMemberId (params, item) {
       console.debug('filterByMemberId', params)
@@ -114,7 +139,9 @@ angular
     }
 
     $httpBackend.whenGET(/^\/payment(\?.+)?$/).respond(getList(payments, filterByMemberId))
+    $httpBackend.whenPOST('/payment').respond(createListItem(payments))
     $httpBackend.whenGET(/^\/payment\/(\d+)$/, undefined, ['id']).respond(getListItem(payments, filterByMemberId))
+    $httpBackend.whenPOST(/^\/payment\/(\d+)$/, undefined, undefined, ['id']).respond(updateListItem(payments))
 
     // fallback to passthrough
     $httpBackend.whenGET(/^\/views\/.+/).passThrough()
