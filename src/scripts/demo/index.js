@@ -3,70 +3,8 @@ var angular = require('angular')
 angular
   .module('demo', ['members', require('angular-mocks/ngMockE2E')])
   .run(/* @ngInject */function ($httpBackend) {
-    var members = [
-      {
-        id: 1,
-        firstName: 'Асен',
-        middleName: 'Асенов',
-        lastName: 'Виденов',
-        membershipExpire: new Date().getTime() + 3 * 30 * 24 * 60 * 60 * 1000,
-        category: 'student',
-        email: 'boss@acme.com',
-        country: 'Bulgaria'
-      },
-      {
-        id: 2,
-        firstName: 'Ясен',
-        lastName: 'Върбанов',
-        membershipExpire: new Date().getTime() - 3 * 30 * 24 * 60 * 60 * 1000
-      },
-      {
-        id: 3,
-        firstName: 'Иван',
-        middleName: 'Стефанов',
-        lastName: 'Петров',
-        username: 'ivanpetrov',
-        email: 'ivan@petrov',
-        country: 'България',
-        city: 'Пловдив',
-        postalCode: '4000',
-        address: 'пл. Централен',
-        phone: '+3598900000',
-        cardId: '1234',
-        accessId: '10001',
-        category: 'regular',
-        membershipExpire: new Date().getTime() - 7 * 30 * 24 * 60 * 60 * 1000
-      }
-    ]
-    var payments = [
-      {
-        id: 1,
-        paymentDate: new Date().getTime() - 30 * 30 * 24 * 60 * 60 * 100,
-        amount: 10,
-        membershipType: 'Индивидуално членство',
-        paymentType: 'В офис на БДЗП',
-        members: [1],
-        billingMemberId: 1
-      },
-      {
-        id: 2,
-        paymentDate: new Date().getTime() - 20 * 30 * 24 * 60 * 60 * 100,
-        amount: 15,
-        membershipType: 'Семейно членство',
-        paymentType: 'Платежно нареждане',
-        members: [2, 3],
-        billingMemberId: 2
-      },
-      {
-        id: 3,
-        paymentDate: new Date().getTime() - 10 * 30 * 24 * 60 * 60 * 100,
-        amount: 10,
-        membershipType: 'Промоция 2 за 1',
-        paymentType: 'Борика ПОС',
-        members: [1, 3],
-        billingMemberId: 3
-      }
-    ]
+    var members = require('./members')
+    var payments = require('./payments')
 
     var filterNoop = function () { return true }
 
@@ -101,6 +39,7 @@ angular
         var item = JSON.parse(data)
         item.id = list.length + 1
         list.push(item)
+        list.save()
         return [200, {data: item}, {}]
       }
     }
@@ -111,6 +50,7 @@ angular
         var item = list.reduce(reduceIdFinder.bind(null, id), null)
         if (item) {
           Object.assign(item, JSON.parse(data), {id: id})
+          list.save()
           return [200, {data: item}, {}]
         }
         return [404, {error: 'Not found'}, {}]
