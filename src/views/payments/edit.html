@@ -2,8 +2,8 @@
     <actions>
         <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}" ng-click="$ctrl.save()"></button-save>
     </actions>
-    <span ng-if="!$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_TITLE_NEW</span>
-    <span ng-if="$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_TITLE_EDIT</span>
+    <span ng-if="!$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_NEW' | translate}}</span>
+    <span ng-if="$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_EDIT' | translate}}</span>
 </page-header>
 
 <div class="row">
@@ -20,7 +20,7 @@
                    model="$ctrl.data.paymentDate"
             ></field>
 
-            <field name="amount" type="float" required="true"
+            <field name="amount" type="currency" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_AMOUNT' | translate}}"
                    model="$ctrl.data.amount"
             ></field>

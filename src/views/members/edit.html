@@ -2,8 +2,8 @@
     <actions>
         <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}" ng-click="$ctrl.save()"></button-save>
     </actions>
-    <span ng-if="!$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_TITLE_NEW</span>
-    <span ng-if="$ctrl.data.id" translate>{{::$ctrl.translationPrefix}}_TITLE_EDIT</span>
+    <span ng-if="!$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_NEW' | translate}}</span>
+    <span ng-if="$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_EDIT' | translate}}</span>
 </page-header>
 
 <div class="row">
@@ -20,7 +20,7 @@
                    model="$ctrl.data.firstName"
             ></field>
 
-            <field name="middleName" type="text" required="false"
+            <field name="middleName" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_MIDDLE_NAME' | translate}}"
                    model="$ctrl.data.middleName"
             ></field>
@@ -30,47 +30,47 @@
                    model="$ctrl.data.lastName"
             ></field>
 
-            <field name="email" type="email" required="false"
+            <field name="email" type="email"
                    label="{{::$ctrl.translationPrefix+'_FIELD_EMAIL' | translate}}"
                    model="$ctrl.data.email"
             ></field>
 
-            <field name="username" type="text" required="false"
+            <field name="username" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_USERNAME' | translate}}"
                    model="$ctrl.data.username"
             ></field>
 
-            <field name="country" type="text" required="false"
+            <field name="country" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_COUNTRY' | translate}}"
                    model="$ctrl.data.country"
             ></field>
 
-            <field name="city" type="text" required="false"
+            <field name="city" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_CITY' | translate}}"
                    model="$ctrl.data.city"
             ></field>
 
-            <field name="postalCode" type="text" required="false"
+            <field name="postalCode" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_POSTAL_CODE' | translate}}"
                    model="$ctrl.data.postalCode"
             ></field>
 
-            <field name="address" type="text" required="false"
+            <field name="address" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_ADDRESS' | translate}}"
                    model="$ctrl.data.address"
             ></field>
 
-            <field name="phone" type="phone" required="false"
+            <field name="phone" type="phone"
                    label="{{::$ctrl.translationPrefix+'_FIELD_PHONE' | translate}}"
                    model="$ctrl.data.phone"
             ></field>
 
-            <field name="cardId" type="text" required="false"
+            <field name="cardId" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_CARD_ID' | translate}}"
                    model="$ctrl.data.cardId"
             ></field>
 
-            <field name="accessId" type="text" required="false"
+            <field name="accessId" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_ACCESS_ID' | translate}}"
                    model="$ctrl.data.accessId"
             ></field>

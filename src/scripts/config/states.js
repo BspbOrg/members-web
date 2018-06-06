@@ -13,9 +13,9 @@ module.config(/* @ngInject */function ($locationProvider, $stateProvider, $urlRo
   // Use $stateProvider to configure your states.
   $stateProvider
 
-    /// ////////
-    // Login //
-    /// ////////
+  /// ////////
+  // Login //
+  /// ////////
     .state('login', {
       url: '/login?email',
       templateUrl: '/views/session/login.html',
@@ -67,7 +67,7 @@ module.config(/* @ngInject */function ($locationProvider, $stateProvider, $urlRo
       controller: 'MainController',
       controllerAs: 'main',
       data: {
-        roles: [ 'admin' ]
+        roles: ['admin']
       },
       resolve: {
         authorize: /* @ngInject */function (authorization) {
@@ -86,13 +86,20 @@ module.config(/* @ngInject */function ($locationProvider, $stateProvider, $urlRo
           templateUrl: '/views/dashboard.html',
           controller: 'DashboardController as dashboard'
         }
-      }
+      },
+      redirectTo: 'auth.members'
     })
 })
   .run(/* @ngInject */function ($rootScope, $state, $stateParams, authorization, user) {
     $rootScope.$state = $state
     $rootScope.$stateParams = $stateParams
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+      if (toState.redirectTo) {
+        event.preventDefault()
+        $state.go(toState.redirectTo, toStateParams, {location: 'replace'})
+        return
+      }
+
       $rootScope.toState = toState
       $rootScope.toStateParams = toStateParams
 

@@ -8,7 +8,10 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
   // methods
   Object.assign(Model.prototype, {
     getName: function () {
-      return [ this.firstName, this.lastName ].filter(function (s) { return !!s }).join(' ')
+      return [this.firstName, this.lastName].filter(function (s) { return !!s }).join(' ')
+    },
+    getFullAddress: function () {
+      return [this.address, this.city, this.postalCode, this.country].filter(function (a) { return a }).join(',')
     },
     toString: function () {
       return this.getName()

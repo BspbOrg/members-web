@@ -20,10 +20,10 @@
     </div>
 
     <div class="col-md-12">
-        <h4>
+        <h2 class="page-header-">
             {{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_TITLE' | translate}}
-            <small>{{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_SUBTITLE' | translate}}</small>
-        </h4>
+            <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_SUBTITLE' | translate}}</p>
+        </h2>
         <list-members member-ids="$ctrl.data.members"></list-members>
     </div>
 </div>

@@ -6,10 +6,13 @@ angular
     var members = [
       {
         id: 1,
-        firstName: 'Иван',
-        middleName: 'Иванов',
-        lastName: 'Иванов',
-        membershipExpire: new Date().getTime() + 3 * 30 * 24 * 60 * 60 * 1000
+        firstName: 'Асен',
+        middleName: 'Асенов',
+        lastName: 'Виденов',
+        membershipExpire: new Date().getTime() + 3 * 30 * 24 * 60 * 60 * 1000,
+        category: 'student',
+        email: 'boss@acme.com',
+        country: 'Bulgaria'
       },
       {
         id: 2,
