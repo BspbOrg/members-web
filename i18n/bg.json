@@ -64,6 +64,7 @@
   "MEMBER_FIELD_CARD_ID": "№ на карта",
   "MEMBER_FIELD_ACCESS_ID": "MS Access ID",
   "MEMBER_FIELD_CATEGORY": "Категория",
+  "MULTIPLE_CHOICE_DEFAULT_NONE_SELECTION": "- няма -",
   "PAYMENT_BUTTON_NEW": "Нов",
   "PAYMENT_BUTTON_EDIT": "Редакция",
   "PAYMENT_BUTTON_SAVE": "Запис",

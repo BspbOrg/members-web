@@ -6,6 +6,7 @@ module.exports = require('angular')
     require('@uirouter/angularjs').default
   ])
   .config(require('./states'))
+  .controller('paymentController', require('./controllers/PaymentController'))
   .directive('listPayments', require('./directives/ListPayments'))
   .directive('tablePayments', require('./directives/TablePayments'))
   .factory('Payment', require('./models/Payment'))
