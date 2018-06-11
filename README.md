@@ -11,8 +11,11 @@ Management system for [BSPB](http://bspb.org/) members
 
 `npm install`
 
+`npm run build`
+
+
 ## To Run:
-`npm dev`
+`npm run dev`
 
 ## To Test:
 `npm test`
