@@ -35,7 +35,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
       }
     })
     .state('auth.payments.new', {
-      url: '/new',
+      url: '/new?billingMemberId',
       views: {
         'content@auth': {
           templateUrl: '/views/payments/new.html',

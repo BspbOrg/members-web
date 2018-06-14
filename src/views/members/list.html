@@ -1,7 +1,7 @@
 <page-header>
     <actions>
         <button-delete translation-prefix="{{::$ctrl.translationPrefix+'_LIST'}}"></button-delete>
-        <button-new translation-prefix="{{::$ctrl.translationPrefix}}"></button-new>
+        <button-new translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".new"></button-new>
     </actions>
     {{ ::$ctrl.translationPrefix+'_LIST_TITLE_PRIMARY' | translate}}
     <p class="small">{{ ::$ctrl.translationPrefix+'_LIST_TITLE_SECONDARY' | translate}}</p>

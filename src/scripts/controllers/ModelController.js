@@ -8,6 +8,9 @@ require('../app').controller('ModelController', /* @ngInject */function ($state,
   // if updating existing item, load the data
   if ($stateParams.id) {
     controller.data = model.get({id: $stateParams.id})
+  } else {
+    // eslint-disable-next-line new-cap
+    controller.data = new model($stateParams)
   }
 
   // load the previous/next items to allow navigating

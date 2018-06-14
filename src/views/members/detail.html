@@ -1,6 +1,7 @@
 <page-header>
     <actions>
-        <button-edit translation-prefix="{{::$ctrl.translationPrefix}}"></button-edit>
+        <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
+        <button-new translation-prefix="MEMBERS_PAYMENT" ui-sref="auth.payments.new({billingMemberId: '{{::$ctrl.data.id}}'})"></button-new>
     </actions>
     {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
     <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_SUBTITLE'|translate}}</p>
