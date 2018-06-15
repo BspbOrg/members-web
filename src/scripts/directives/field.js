@@ -23,7 +23,9 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       match: '=?',
       format: '=?',
       context: '@?',
-      values: '<?'
+      values: '<?',
+      min: '<?',
+      max: '<?'
     },
     bindToController: true,
     require: '^form',
@@ -41,20 +43,28 @@ require('../app').directive('field', /* @ngInject */function ($q) {
         field.name = 'field' + ($attrs.type ? '_' + $attrs.type : '') + (cnt++)
       }
 
-      $scope.$watch('form', function (form) {
-        field.form = form
-      })
-      field.$attrs = $attrs
-      field.type = $attrs.type
-      field.required = angular.isDefined($attrs.required)
-      field.readonly = 'readonly' in $attrs ? (angular.isDefined($attrs.readonly) ? $parse($attrs.readonly)($scope.$parent) : true) : false
+      field.$onInit = function () {
+        field.form = $scope.form
+        field.$attrs = $attrs
+        field.type = $attrs.type
+        field.required = angular.isDefined($attrs.required)
+        field.readonly = 'readonly' in $attrs ? (angular.isDefined($attrs.readonly) ? $parse($attrs.readonly)($scope.$parent) : true) : false
+
+        switch ($attrs.type) {
+          case 'date':
+            field.options = {}
+            if (field.min) field.options.minDate = field.min
+            if (field.max) field.options.maxDate = field.max
+            break
+        }
+      }
 
       if ('disabled' in $attrs) {
         if (angular.isDefined($attrs.disabled)) {
           var disabledGetter = $parse($attrs.disabled).bind(null, $scope.$parent)
-          $scope.$parent.$watch(disabledGetter, function (value) {
+          $scope.$on('$destroy', $scope.$parent.$watch(disabledGetter, function (value) {
             field.disabled = value
-          })
+          }))
         } else {
           field.disabled = true
         }

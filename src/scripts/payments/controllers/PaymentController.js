@@ -1,6 +1,8 @@
 module.exports = /* @ngInject */function () {
   var $ctrl = this
 
+  $ctrl.currentDate = new Date()
+
   $ctrl.getPaymentAmount = function (paymentType) {
     switch (paymentType) {
       case 'regular':

@@ -18,6 +18,7 @@
             <field name="paymentDate" type="date" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_PAYMENT_DATE' | translate}}"
                    model="$ctrl.data.paymentDate"
+                   max="paymentCtrl.currentDate"
             ></field>
 
             <field name="membershipType" type="single-choice" required="true" values="[
