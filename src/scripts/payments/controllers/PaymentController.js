@@ -18,9 +18,21 @@ module.exports = /* @ngInject */function () {
 
   $ctrl.addToMembers = function (members, member) {
     members = members || []
-    if (members.indexOf(member) === -1) {
-      members.push(member)
+    if (members.indexOf(member) !== -1) return members
+
+    var newMembers = [].concat(members)
+    newMembers.push(member)
+    return newMembers
+  }
+
+  var lastMember
+  $ctrl.replaceMember = function (members, member) {
+    var newMembers = [].concat(members || [])
+    var lastIdx = newMembers.indexOf(lastMember)
+    if (lastIdx !== -1) {
+      newMembers.splice(lastIdx, 1)
     }
-    return members
+    lastMember = member
+    return $ctrl.addToMembers(newMembers, member)
   }
 }

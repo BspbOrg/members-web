@@ -6,6 +6,7 @@
     aria-describedby="{{::field.name}}HelpBlock"
     placeholder="{{::field.placeholder}}"
     ng-model="field.model"
+    ng-change="field.onSelect()"
     multiple
     selected-text-format="count>3"
     live-search="true"

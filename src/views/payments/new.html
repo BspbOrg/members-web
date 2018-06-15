@@ -7,7 +7,7 @@
 </page-header>
 
 <div class="row">
-    <div class="col-md-12" ng-controller="paymentController as paymentCtrl">
+    <div class="col-md-12" ng-controller="paymentController as paymentCtrl" ng-init="$ctrl.data.members=paymentCtrl.replaceMember($ctrl.data.members, $ctrl.data.billingMemberId)">
         <form name="$ctrl.form"
               role="form"
               autocomplete="off"
@@ -54,12 +54,13 @@
             <field name="billingMemberId" type="single-choice" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_BILLING_MEMBER_ID' | translate}}"
                    model="$ctrl.data.billingMemberId"
-                   on-select="$ctrl.data.members=paymentCtrl.addToMembers($ctrl.data.members, $ctrl.data.billingMemberId)"
+                   on-select="$ctrl.data.members=paymentCtrl.replaceMember($ctrl.data.members, $ctrl.data.billingMemberId)"
             ></field>
 
             <field name="members" type="multiple-choice" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERS' | translate}}"
                    model="$ctrl.data.members"
+                   on-select="$ctrl.data.members=paymentCtrl.addToMembers($ctrl.data.members, $ctrl.data.billingMemberId)"
             ></field>
 
         </form>
