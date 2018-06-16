@@ -7,7 +7,7 @@
 </page-header>
 
 <div class="row">
-    <div class="col-md-12" ng-controller="paymentController as paymentCtrl" ng-init="$ctrl.data.members=paymentCtrl.replaceMember($ctrl.data.members, $ctrl.data.billingMemberId)">
+    <div class="col-md-12">
         <form name="$ctrl.form"
               role="form"
               autocomplete="off"
@@ -18,7 +18,7 @@
             <field name="paymentDate" type="date" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_PAYMENT_DATE' | translate}}"
                    model="$ctrl.data.paymentDate"
-                   max="paymentCtrl.currentDate"
+                   max="$ctrl.currentDate"
             ></field>
 
             <field name="membershipType" type="single-choice" required="true" values="[
@@ -29,7 +29,7 @@
                     ]"
                    label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERSHIP_TYPE' | translate}}"
                    model="$ctrl.data.membershipType"
-                   on-select="$ctrl.data.amount = paymentCtrl.getPaymentAmount($ctrl.data.membershipType)"
+                   on-select="$ctrl.onMembershipChange()"
             ></field>
 
             <field name="amount" type="currency" required="true"
@@ -55,13 +55,13 @@
             <field name="billingMemberId" type="single-choice" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_BILLING_MEMBER_ID' | translate}}"
                    model="$ctrl.data.billingMemberId"
-                   on-select="$ctrl.data.members=paymentCtrl.replaceMember($ctrl.data.members, $ctrl.data.billingMemberId)"
+                   on-select="$ctrl.onBillingMemberChange()"
             ></field>
 
             <field name="members" type="multiple-choice" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERS' | translate}}"
                    model="$ctrl.data.members"
-                   on-select="$ctrl.data.members=paymentCtrl.addToMembers($ctrl.data.members, $ctrl.data.billingMemberId)"
+                   on-select="$ctrl.onMembersChange()"
             ></field>
 
         </form>

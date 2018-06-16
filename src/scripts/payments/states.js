@@ -39,7 +39,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
       views: {
         'content@auth': {
           templateUrl: '/views/payments/new.html',
-          controller: 'ModelController',
+          controller: 'PaymentController',
           controllerAs: '$ctrl'
         }
       }

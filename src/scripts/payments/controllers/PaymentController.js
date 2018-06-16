@@ -1,7 +1,35 @@
-module.exports = /* @ngInject */function () {
-  var $ctrl = this
+var noop = function () {}
 
-  $ctrl.currentDate = new Date()
+module.exports = /* @ngInject */function ($controller, $scope, Payment, translationPrefix) {
+  var $ctrl = $controller('ModelController', {
+    $scope: $scope,
+    model: Payment,
+    translationPrefix: translationPrefix
+  })
+
+  $ctrl.$onInit = (function (superOnInit) {
+    return function onInit () {
+      superOnInit.apply($ctrl, arguments)
+
+      $ctrl.onBillingMemberChange()
+      $ctrl.currentDate = new Date()
+    }
+  })($ctrl.$onInit || noop)
+
+  $ctrl.onBillingMemberChange = function (payment) {
+    payment = payment || $ctrl.data
+    payment.members = $ctrl.replaceMember(payment.members, payment.billingMemberId)
+  }
+
+  $ctrl.onMembersChange = function (payment) {
+    payment = payment || $ctrl.data
+    payment.members = $ctrl.addToMembers(payment.members, payment.billingMemberId)
+  }
+
+  $ctrl.onMembersChange = function (payment) {
+    payment = payment || $ctrl.data
+    payment.amount = $ctrl.getPaymentAmount(payment.membershipType)
+  }
 
   $ctrl.getPaymentAmount = function (paymentType) {
     switch (paymentType) {
@@ -37,4 +65,6 @@ module.exports = /* @ngInject */function () {
     lastMember = member
     return $ctrl.addToMembers(newMembers, member)
   }
+
+  return $ctrl
 }

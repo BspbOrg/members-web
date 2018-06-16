@@ -1,6 +1,6 @@
 var angular = require('angular')
 
-require('../app').controller('ModelController', /* @ngInject */function ($state, $stateParams, $q, $translate, model, ngToast, Raven, translationPrefix) {
+module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, model, ngToast, Raven, translationPrefix) {
   var controller = this
 
   controller.translationPrefix = translationPrefix
@@ -77,4 +77,4 @@ require('../app').controller('ModelController', /* @ngInject */function ($state,
         return $q.reject(error)
       })
   }
-})
+}
