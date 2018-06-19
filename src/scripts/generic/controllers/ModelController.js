@@ -86,15 +86,14 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       })
       .catch(function (error) {
         Raven.captureMessage(JSON.stringify(error))
-        $translate(controller.translationPrefix + '_ERROR_SAVE')
+        return $translate(controller.translationPrefix + '_ERROR_SAVE')
           .then(function (message) {
             ngToast.create({
               className: 'danger',
               content: '<p>' + message + '</p><pre>' + (error && error.message ? error.message : JSON.stringify(error, null, 2)) + '</pre>'
             })
           })
-          .catch(angular.noop) // fix Possibly unhandled rejection
-        return $q.reject(error)
       })
+      .catch(angular.noop) // fix Possibly unhandled rejection
   }
 }
