@@ -90,6 +90,7 @@
   "PAYMENT_FIELD_PAYMENT_TYPE": "Вид плащане",
   "PAYMENT_FIELD_MEMBERS": "Членове",
   "PAYMENT_FIELD_BILLING_MEMBER_ID": "Заплатил член",
+  "PAYMENT_ERROR_SAVE": "Грешка при запис",
   "CATEGORY_STUDENT": "Студент",
   "CATEGORY_REGULAR": "Редовен",
   "CATEGORY_RETIRED": "Пенсионер",

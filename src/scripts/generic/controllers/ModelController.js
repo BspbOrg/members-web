@@ -42,10 +42,30 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
   }
 
   controller.save = function () {
-    var data = new model(controller.data) // eslint-disable-line new-cap
-    if (angular.isFunction(data.preSave)) data.preSave()
-    data
-      .$save()
+    return $q
+      .resolve(new model(controller.data)) // eslint-disable-line new-cap
+      // process validation if any
+      .then(function (data) {
+        if (angular.isFunction(data.validate)) {
+          return $q
+            .resolve(data.validate())
+            .then(function () { return data })
+        }
+        return data
+      })
+      // process preSave hook if any
+      .then(function (data) {
+        if (angular.isFunction(data.preSave)) {
+          return $q
+            .resolve(data.preSave())
+            .then(function () { return data })
+        }
+        return data
+      })
+      // process save
+      .then(function (data) {
+        return data.$save()
+      })
       .then(function (res) {
         if (controller.form) {
           controller.form.$setPristine()
@@ -70,7 +90,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
           .then(function (message) {
             ngToast.create({
               className: 'danger',
-              content: '<p>' + message + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
+              content: '<p>' + message + '</p><pre>' + (error && error.message ? error.message : JSON.stringify(error, null, 2)) + '</pre>'
             })
           })
           .catch(angular.noop) // fix Possibly unhandled rejection
