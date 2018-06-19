@@ -8,9 +8,9 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
 
   // methods
   Object.assign(Model.prototype, {
-    validate: function() {
+    validate: function () {
       if (this.members.indexOf(this.billingMemberId) === -1) {
-        throw new Error("MISSING_BILLING_MEMBER_IN_MEMBERS")
+        throw new Error('MISSING_BILLING_MEMBER_IN_MEMBERS')
       }
     }
   })
