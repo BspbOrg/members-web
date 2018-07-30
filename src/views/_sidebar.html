@@ -31,6 +31,32 @@
                     <translate>NAV_NOMENCLATURES</translate>
                 </a>
             </li>
+            <li ng-if="$root.$user.isAdmin()">
+                <a id="sidebar-import" href ng-click="$ctrl.isImportCollapsed=!$ctrl.isImportCollapsed">
+                    <i class="fa fa-file fa-fw"></i>
+                    <translate>NAV_IMPORT</translate>
+                </a>
+                <ul class="nav collapse" role="menu" aria-labelledby="sidebar-import" uib-collapse="$ctrl.isImportCollapsed">
+                    <li>
+                        <a ui-sref="auth.import.members()" ui-sref-active="active">
+                            <i class="icon icon-cbm icon-fw"></i>
+                            <translate>MEMBERS</translate>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="auth.import.payments" ui-sref-active="active">
+                            <i class="icon icon-cbm icon-fw"></i>
+                            <translate>PAYMENTS</translate>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="auth.import.family" ui-sref-active="active">
+                            <i class="icon icon-cbm icon-fw"></i>
+                            <translate>FAMILY_MEMBERS</translate>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

@@ -33,7 +33,8 @@ var dependencies = [
   require('./generic'),
   require('./members'),
   require('./payments'),
-  require('./users')
+  require('./users'),
+  require('./import')
 ]
 
 var app = module.exports = angular.module('members', dependencies)
