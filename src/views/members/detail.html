@@ -1,0 +1,51 @@
+<page-header>
+    <actions>
+        <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
+        <button-new translation-prefix="MEMBERS_PAYMENT" ui-sref="auth.payments.new({billingMemberId: '{{::$ctrl.data.id}}'})"></button-new>
+    </actions>
+    {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
+    <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_SUBTITLE'|translate}}</p>
+</page-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>
+            {{::$ctrl.data.firstName}} {{::$ctrl.data.middleName}} {{::$ctrl.data.lastName}}
+            <small>{{::$ctrl.data.category}}</small>
+        </h3>
+        <div class="row">
+            <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_PHONE' | translate}}">
+                <i class="fa fa-mobile-phone fa-fw"></i>
+                {{$ctrl.data.phone || '-'}}
+            </div>
+            <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_EMAIL' | translate}}">
+                <i class="fa fa-at fa-fw"></i>
+                {{$ctrl.data.email || '-'}}
+            </div>
+            <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_FULL_ADDRESS' | translate}}">
+                <i class="fa fa-envelope fa-fw"></i>
+                {{$ctrl.data.getFullAddress() || '-'}}
+            </div>
+            <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_USERNAME' | translate}}">
+                <i class="fa fa-user fa-fw"></i>
+                {{$ctrl.data.username || '-'}}
+            </div>
+            <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_CARD_ID' | translate}}">
+                <i class="fa fa-address-card fa-fw"></i>
+                {{$ctrl.data.cardId || '-'}}
+            </div>
+            <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_ACCESS_ID' | translate}}">
+                <i class="fa fa-database fa-fw"></i>
+                {{$ctrl.data.accessId || '-'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <h2>
+            {{::$ctrl.translationPrefix+'_DETAIL_PAYMENTS_TITLE' | translate}}
+            <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_PAYMENTS_SUBTITLE' | translate}}</p>
+        </h2>
+        <list-payments member-id="$ctrl.data.id"></list-payments>
+    </div>
+</div>

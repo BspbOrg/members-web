@@ -29,3 +29,23 @@
 
 // angular-bootstrap-lightbox
 @import (inline) "@{libs}/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css";
+
+.table {
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        &.nav-link {
+          padding: 0;
+          > a {
+            padding: @table-cell-padding;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

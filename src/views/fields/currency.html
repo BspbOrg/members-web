@@ -1,0 +1,18 @@
+<sb-include src="/views/fields/container.html">
+    <div class="input-group">
+        <span class="input-group-addon" ng-if="'CURRENCY_PREFIX'|translate">{{::'CURRENCY_PREFIX'|translate}}</span>
+        <input type="number"
+               step="{{::field.$attrs.step}}"
+               min="{{::field.$attrs.min}}"
+               max="{{::field.$attrs.max}}"
+               pattern="{{::field.$attrs.pattern}}"
+               class="form-control"
+               id="{{::field.name}}"
+               name="{{::field.name}}"
+               aria-describedby="{{::field.name}}HelpBlock"
+               placeholder="{{::field.placeholder}}"
+               ng-model="field.model"
+               ng-required="::field.required">
+        <span class="input-group-addon" ng-if="'CURRENCY_SUFFIX'|translate">{{::'CURRENCY_SUFFIX'|translate}}</span>
+    </div>
+</sb-include>

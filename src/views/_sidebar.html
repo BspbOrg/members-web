@@ -1,20 +1,32 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            <li>
-                <a ui-sref="auth.dashboard" ui-sref-active="active">
+            <li class="hidden">
+                <a ui-sref="auth.dashboard()" ui-sref-active="active">
                     <i class="fa fa-dashboard fa-fw"></i>
                     <translate>NAV_DASHBOARD</translate>
                 </a>
             </li>
             <li ng-if="$root.$user.isAdmin()">
-                <a ui-sref="auth.users" ui-sref-active="active">
+                <a ui-sref="auth.members()" ui-sref-active="active">
+                    <i class="fa fa-users fa-fw"></i>
+                    <translate>NAV_MEMBERS</translate>
+                </a>
+            </li>
+            <li ng-if="$root.$user.isAdmin()">
+                <a ui-sref="auth.payments()" ui-sref-active="active">
+                    <i class="fa fa-file fa-fw"></i>
+                    <translate>NAV_PAYMENTS</translate>
+                </a>
+            </li>
+            <li ng-if="$root.$user.isAdmin()" class="hidden">
+                <a ui-sref="auth.users()" ui-sref-active="active">
                     <i class="fa fa-users fa-fw"></i>
                     <translate>NAV_USERS</translate>
                 </a>
             </li>
-            <li ng-if="$root.$user.isAdmin()">
-                <a ui-sref="auth.nomenclatures" ui-sref-active="active">
+            <li ng-if="$root.$user.isAdmin()" class="hidden">
+                <a ui-sref="auth.nomenclatures()" ui-sref-active="active">
                     <i class="fa fa-database fa-fw"></i>
                     <translate>NAV_NOMENCLATURES</translate>
                 </a>

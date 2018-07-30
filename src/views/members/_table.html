@@ -1,0 +1,28 @@
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th><input type="checkbox" ng-model="$ctrl.allSelected" ng-click="$ctrl.toggleSelected()"></th>
+        <th class="col-xs-1 text-right" sortable-column="id">
+            {{::$ctrl.translationPrefix+'_LIST_TABLE_ID' | translate}}
+        </th>
+        <th class="col-xs-5" sortable-column="firstName+middleName+lastName">
+            {{::$ctrl.translationPrefix+'_LIST_TABLE_NAME' | translate}}
+        </th>
+        <th class="col-xs-4" sortable-column="membershipExpire|date:'yyyyMMddHHmmss'">
+            {{::$ctrl.translationPrefix+'_LIST_TABLE_MEMBERSHIP_EXPIRE' | translate}}
+        </th>
+        <th class="col-xs-2" sortable-column="uninterruptedMembershipSince|date:'yyyyMMddHHmmss'">
+            {{::$ctrl.translationPrefix+'_LIST_TABLE_UNINTERRUPTED_MEMBERSHIP_SINCE' | translate}}
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="row in $ctrl.rows | filter:$ctrl.filterRows(data.filter) | orderBy:data.order.key:data.order.reverse">
+        <td><input type="checkbox" ng-model="row.$selected" ng-click="$ctrl.toggleSelected(row)"></td>
+        <td class="col-xs-1 text-right nav-link"><a ui-sref="auth.members.detail({id: row.id})">{{row.id}}</a></td>
+        <td class="col-xs-5">{{row.firstName}} {{row.middleName}} {{row.lastName}}</td>
+        <td class="col-xs-4">{{(row.membershipExpire | date) || '-'}}</td>
+        <td class="col-xs-2">1 година</td>
+    </tr>
+    </tbody>
+</table>

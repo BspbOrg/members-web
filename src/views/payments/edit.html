@@ -1,0 +1,56 @@
+<page-header>
+    <actions>
+        <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}" ng-click="$ctrl.save()"></button-save>
+    </actions>
+    <span ng-if="!$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_NEW' | translate}}</span>
+    <span ng-if="$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_EDIT' | translate}}</span>
+</page-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <form name="$ctrl.form"
+              role="form"
+              autocomplete="off"
+              confirm-on-exit="$ctrl.form.$dirty"
+              confirm-message-window="{{::$ctrl.translationPrefix+'_UNSAVED_DATA_ALERT_TITLE' | translate}}"
+              confirm-message-route="{{::$ctrl.translationPrefix+'_UNSAVED_DATA_ALERT_MESSAGE' | translate}}">
+
+            <field name="paymentDate" type="date" required="true"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_PAYMENT_DATE' | translate}}"
+                   model="$ctrl.data.paymentDate"
+            ></field>
+
+            <field name="amount" type="currency" required="true"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_AMOUNT' | translate}}"
+                   model="$ctrl.data.amount"
+            ></field>
+
+            <field name="membershipType" type="text" required="false"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERSHIP_TYPE' | translate}}"
+                   model="$ctrl.data.membershipType"
+            ></field>
+
+            <field name="paymentType" type="text" required="false"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_PAYMENT_TYPE' | translate}}"
+                   model="$ctrl.data.paymentType"
+            ></field>
+
+            <field name="members" type="multiple-choice" values-model="Member"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERS' | translate}}"
+                   model="$ctrl.data.members"
+            ></field>
+
+            <field name="billingMemberId" type="single-choice" values-model="Member"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_BILLING_MEMBER_ID' | translate}}"
+                   model="$ctrl.data.billingMemberId"
+            ></field>
+
+        </form>
+    </div>
+</div>
+
+<page-footer>
+    <actions>
+        <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}" ng-click="$ctrl.save()"></button-save>
+    </actions>
+</page-footer>

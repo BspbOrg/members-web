@@ -23,7 +23,9 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       match: '=?',
       format: '=?',
       context: '@?',
-      values: '<?'
+      values: '<?',
+      min: '<?',
+      max: '<?'
     },
     bindToController: true,
     require: '^form',
@@ -34,27 +36,35 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       $scope.form = formCtrl
     },
     controllerAs: 'field',
-    controller: /* @ngInject */function ($scope, $attrs, $filter, $parse, $rootElement, $timeout, $translate) {
+    controller: /* @ngInject */function ($scope, $attrs, $filter, $injector, $parse, $rootElement, $timeout, $translate) {
       var field = this
 
       while (!field.name || $rootElement.querySelectorAll('#' + field.name).length) {
         field.name = 'field' + ($attrs.type ? '_' + $attrs.type : '') + (cnt++)
       }
 
-      $scope.$watch('form', function (form) {
-        field.form = form
-      })
-      field.$attrs = $attrs
-      field.type = $attrs.type
-      field.required = angular.isDefined($attrs.required)
-      field.readonly = 'readonly' in $attrs ? (angular.isDefined($attrs.readonly) ? $parse($attrs.readonly)($scope.$parent) : true) : false
+      field.$onInit = function () {
+        field.form = $scope.form
+        field.$attrs = $attrs
+        field.type = $attrs.type
+        field.required = angular.isDefined($attrs.required)
+        field.readonly = 'readonly' in $attrs ? (angular.isDefined($attrs.readonly) ? $parse($attrs.readonly)($scope.$parent) : true) : false
+
+        switch ($attrs.type) {
+          case 'date':
+            field.options = {}
+            if (field.min) field.options.minDate = field.min
+            if (field.max) field.options.maxDate = field.max
+            break
+        }
+      }
 
       if ('disabled' in $attrs) {
         if (angular.isDefined($attrs.disabled)) {
           var disabledGetter = $parse($attrs.disabled).bind(null, $scope.$parent)
-          $scope.$parent.$watch(disabledGetter, function (value) {
+          $scope.$on('$destroy', $scope.$parent.$watch(disabledGetter, function (value) {
             field.disabled = value
-          })
+          }))
         } else {
           field.disabled = true
         }
@@ -73,25 +83,43 @@ require('../app').directive('field', /* @ngInject */function ($q) {
         if (!args) {
           args = {}
         } else if (!angular.isObject(args)) {
-          args = { $arg: args }
+          args = {$arg: args}
         }
         $timeout(function () {
           if (angular.isFunction(field.select)) {
-            field.select(angular.extend({}, args, { model: field.model }))
+            field.select(angular.extend({}, args, {model: field.model}))
           }
         })
       }
 
+      if ($attrs.valuesModel) {
+        var valueModel = $injector.get($attrs.valuesModel)
+        valueModel.query({}).$promise.then(function (list) {
+          field.values = list
+        })
+      }
+
+      Object.defineProperty(field, 'values', {
+        get: function () { return field._values },
+        set: function (v) {
+          field._values = v.map(function (item) {
+            return {
+              id: item.id,
+              label: item.label ? $translate.instant(item.label) : item.toString()
+            }
+          })
+        }
+      })
+
       switch ($attrs.type) {
         case 'date':
-        case 'time': {
+        case 'time':
           $scope.$watch('field.model', function () {
             if (angular.isString(field.model)) {
               field.model = moment(field.model).toDate()
             }
           })
           break
-        }
       }
     }
   }

@@ -1,0 +1,29 @@
+<page-header>
+    <actions>
+        <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
+    </actions>
+    {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
+</page-header>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>
+            {{::$ctrl.data.membershipType}}
+            <small>{{::$ctrl.data.paymentType}}</small>
+        </h3>
+        <dl class="dl-horizontal">
+            <dt>{{::$ctrl.translationPrefix+'_LABEL_AMOUNT'|translate}}</dt>
+            <dd>{{::$ctrl.data.amount | currency}}</dd>
+            <dt>{{::$ctrl.translationPrefix+'_LABEL_PAYMENT_DATE'|translate}}</dt>
+            <dd>{{::$ctrl.data.paymentDate | date}}</dd>
+        </dl>
+    </div>
+
+    <div class="col-md-12">
+        <h2 class="page-header-">
+            {{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_TITLE' | translate}}
+            <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_SUBTITLE' | translate}}</p>
+        </h2>
+        <list-members member-ids="$ctrl.data.members"></list-members>
+    </div>
+</div>

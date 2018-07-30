@@ -4,7 +4,7 @@
 var angular = require('angular')
 
 require('../app')
-  .service('user', /* @ngInject */function ($q, $cookies, api, CSRF_COOKIE, CSRF_HEADER) {
+  .service('user', /* @ngInject */function ($cookies, $q, api, CSRF_COOKIE) {
     var service = this
 
     var _identity
@@ -14,7 +14,7 @@ require('../app')
     }
 
     service.isAuthenticated = function () {
-      return angular.isDefined($cookies.get(CSRF_COOKIE))
+      return _identity && _identity.id
     }
     service.isInRole = function (role) {
       if (!service.isAuthenticated()) return false
