@@ -38,8 +38,6 @@ var dependencies = [
 
 var app = module.exports = angular.module('members', dependencies)
 
-require('./demo')
-
 raven
   .addPlugin(require('raven-js/plugins/angular'), angular)
   .install()
