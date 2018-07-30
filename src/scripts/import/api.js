@@ -1,5 +1,5 @@
 var angular = require('angular')
-var FormData = require('form-data');
+var FormData = require('form-data')
 
 module.exports = /* @ngInject */function ($http, ENDPOINT_URL) {
   return {

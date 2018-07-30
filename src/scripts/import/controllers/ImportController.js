@@ -1,5 +1,3 @@
-var angular = require('angular')
-
 module.exports = /* @ngInject */function ($state, importApi) {
   var controller = this
 
@@ -22,6 +20,7 @@ module.exports = /* @ngInject */function ($state, importApi) {
       })
       .catch(function (err) {
         controller.importing = false
+        console.log(err)
       })
   }
 }
