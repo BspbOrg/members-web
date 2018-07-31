@@ -32,4 +32,18 @@ module.exports = /* @ngInject */function ($stateProvider) {
         translationPrefix: function () { return 'PAYMENT' }
       }
     })
+    .state('auth.import.family', {
+      url: '/family',
+      views: {
+        'content@auth': {
+          templateUrl: '/views/import/members.html',
+          controller: 'ImportController',
+          controllerAs: '$ctrl'
+        }
+      },
+      resolve: {
+        importItems: /* @ngInject */function (importApi) { return importApi.family },
+        translationPrefix: function () { return 'FAMILY' }
+      }
+    })
 }
