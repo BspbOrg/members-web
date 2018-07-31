@@ -1,6 +1,7 @@
-module.exports = /* @ngInject */function ($state, importApi) {
+module.exports = /* @ngInject */function ($state, importItems, translationPrefix) {
   var controller = this
-
+  controller.translationPrefix = translationPrefix
+  controller.importing = false
   controller.importData = {
     create: false,
     update: false,
@@ -9,11 +10,9 @@ module.exports = /* @ngInject */function ($state, importApi) {
     defaults: {}
   }
 
-  controller.importing = false
-
   controller.import = function () {
     controller.importing = true
-    importApi.members(controller.importData)
+    importItems(controller.importData)
       .then(function (response) {
         controller.response = response.data
         controller.importing = false

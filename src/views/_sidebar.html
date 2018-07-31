@@ -33,26 +33,26 @@
             </li>
             <li ng-if="$root.$user.isAdmin()">
                 <a id="sidebar-import" href ng-click="$ctrl.isImportCollapsed=!$ctrl.isImportCollapsed">
-                    <i class="fa fa-file fa-fw"></i>
+                    <i class="glyphicon glyphicon-import"></i>
                     <translate>NAV_IMPORT</translate>
                 </a>
                 <ul class="nav collapse" role="menu" aria-labelledby="sidebar-import" uib-collapse="$ctrl.isImportCollapsed">
                     <li>
                         <a ui-sref="auth.import.members()" ui-sref-active="active">
-                            <i class="icon icon-cbm icon-fw"></i>
-                            <translate>MEMBERS</translate>
+                            <i class="fa fa-users fa-fw"></i>
+                            <translate>NAV_IMPORT_MEMBERS</translate>
                         </a>
                     </li>
                     <li>
                         <a ui-sref="auth.import.payments" ui-sref-active="active">
-                            <i class="icon icon-cbm icon-fw"></i>
-                            <translate>PAYMENTS</translate>
+                            <i class="fa fa-file fa-fw"></i>
+                            <translate>NAV_IMPORT_PAYMENTS</translate>
                         </a>
                     </li>
                     <li>
                         <a ui-sref="auth.import.family" ui-sref-active="active">
-                            <i class="icon icon-cbm icon-fw"></i>
-                            <translate>FAMILY_MEMBERS</translate>
+                            <i class="fa fa-users fa-fw"></i>
+                            <translate>NAV_IMPORT_FAMILY_MEMBERS</translate>
                         </a>
                     </li>
                 </ul>

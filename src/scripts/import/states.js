@@ -12,6 +12,24 @@ module.exports = /* @ngInject */function ($stateProvider) {
           controller: 'ImportController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        importItems: /* @ngInject */function (importApi) { return importApi.members },
+        translationPrefix: function () { return 'MEMBER' }
+      }
+    })
+    .state('auth.import.payments', {
+      url: '/payments',
+      views: {
+        'content@auth': {
+          templateUrl: '/views/import/members.html',
+          controller: 'ImportController',
+          controllerAs: '$ctrl'
+        }
+      },
+      resolve: {
+        importItems: /* @ngInject */function (importApi) { return importApi.payments },
+        translationPrefix: function () { return 'PAYMENT' }
       }
     })
 }
