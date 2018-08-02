@@ -13,22 +13,14 @@
         <form>
             <div class="form-group">
                 <label translate>IMPORT_SETTINGS</label>
-                <div class="checkbox">
-                    <label><input type="checkbox" ng-model="$ctrl.importData.create">{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_CREATE'
-                        | translate}}</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" ng-model="$ctrl.importData.update">{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_UPDATE'
-                        | translate}}</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" ng-model="$ctrl.importData.failOnError">{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_FAIL_ON_ERROR'
-                        | translate}}</label>
-                </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" ng-model="$ctrl.importData.dryRun">{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_SIMULATION'
-                        | translate}}</label>
-                </div>
+                <field type="bool" model="$ctrl.importData.create" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_CREATE'
+                        | translate}}"></field>
+                <field type="bool" model="$ctrl.importData.update" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_UPDATE'
+                        | translate}}"></field>
+                <field type="bool" model="$ctrl.importData.failOnError" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_FAIL_ON_ERROR'
+                        | translate}}"></field>
+                <field type="bool" model="$ctrl.importData.dryRun" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_SIMULATION'
+                        | translate}}"></field>
 
                 <div ng-repeat="defaultValue in $ctrl.defaultValues">
                     <field name="defaultValue.name" type="single-choice"

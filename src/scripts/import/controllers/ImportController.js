@@ -4,7 +4,7 @@ module.exports = /* @ngInject */function ($scope, $state, importItems, translati
   controller.defaultValues = defaultValues
   controller.importing = false
   controller.importData = {
-    create: false,
+    create: true,
     update: false,
     failOnError: false,
     dryRun: false,
