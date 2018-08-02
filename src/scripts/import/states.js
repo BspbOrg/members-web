@@ -8,7 +8,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
       url: '/members',
       views: {
         'content@auth': {
-          templateUrl: '/views/import/members.html',
+          templateUrl: '/views/import/import.html',
           controller: 'ImportController',
           controllerAs: '$ctrl'
         }
@@ -22,7 +22,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
       url: '/payments',
       views: {
         'content@auth': {
-          templateUrl: '/views/import/members.html',
+          templateUrl: '/views/import/import.html',
           controller: 'ImportController',
           controllerAs: '$ctrl'
         }
@@ -36,7 +36,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
       url: '/family',
       views: {
         'content@auth': {
-          templateUrl: '/views/import/members.html',
+          templateUrl: '/views/import/import.html',
           controller: 'ImportController',
           controllerAs: '$ctrl'
         }
