@@ -29,6 +29,14 @@
                     <label><input type="checkbox" ng-model="$ctrl.importData.dryRun">{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_SIMULATION'
                         | translate}}</label>
                 </div>
+
+                <div ng-repeat="defaultValue in $ctrl.defaultValues">
+                    <field name="defaultValue.name" type="single-choice"
+                           values="defaultValue.values"
+                           label="{{defaultValue.label | translate}}"
+                           model="$ctrl.importData.defaults[defaultValue.name]"
+                    ></field>
+                </div>
             </div>
 
             <div class="form-group">
@@ -49,7 +57,8 @@
                 <h3 class="panel-title">
                     <translate>IMPORT_RESULTS_TITLE</translate>
                     <div class="pull-right">
-                        <translate>IMPORT_RESULTS_TOTAL_ROWS</translate> {{$ctrl.response.totalRows}}
+                        <translate>IMPORT_RESULTS_TOTAL_ROWS</translate>
+                        {{$ctrl.response.totalRows}}
                     </div>
                 </h3>
             </div>

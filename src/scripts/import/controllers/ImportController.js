@@ -1,6 +1,7 @@
-module.exports = /* @ngInject */function ($state, importItems, translationPrefix) {
+module.exports = /* @ngInject */function ($scope, $state, importItems, translationPrefix, defaultValues) {
   var controller = this
   controller.translationPrefix = translationPrefix
+  controller.defaultValues = defaultValues
   controller.importing = false
   controller.importData = {
     create: false,
