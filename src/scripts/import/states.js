@@ -33,6 +33,10 @@ module.exports = /* @ngInject */function ($stateProvider) {
               label: 'MEMBER_IMPORT_CATEGORY'
             }
           ]
+        },
+        fileExample: function () {
+          return 'accessId; cardId; firstName; middleName; lastName; Country;  postalCode; address;   city;    email;          username; phone;        membershipStartDate; category\n' +
+            '100;      500;    Ivan;      Ivanov;     Ivanov;   Bulgaria; 1330;       Address 1; Plovdiv; ivan@test.test; user1;    359899111222; 2017-05-20;          regular'
         }
       }
     })
@@ -71,6 +75,10 @@ module.exports = /* @ngInject */function ($stateProvider) {
               label: 'PAYMENT_IMPORT_MEMBERSHIP_TYPE'
             }
           ]
+        },
+        fileExample: function () {
+          return 'billingMember.accessId; paymentDate; amount; paymentType;   membershipType; paymentYear; isFamilyPayment; info\n' +
+            '101;                    2018-05-08;  60;     банков превод; ;               2006;        1;               30 EUR'
         }
       }
     })
@@ -85,7 +93,12 @@ module.exports = /* @ngInject */function ($stateProvider) {
       },
       resolve: {
         importItems: /* @ngInject */function (importApi) { return importApi.family },
-        translationPrefix: function () { return 'FAMILY' }
+        translationPrefix: function () { return 'FAMILY' },
+        fileExample: function () {
+          return 'cardId; familyCardId\n' +
+            '100;    101\n' +
+            '103;    105'
+        }
       }
     })
 }

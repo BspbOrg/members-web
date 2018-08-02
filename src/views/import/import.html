@@ -12,16 +12,27 @@
     <div class="col-md-12">
         <form>
             <div class="form-group">
-                <label translate>IMPORT_SETTINGS</label>
-                <field type="bool" model="$ctrl.importData.create" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_CREATE'
+                <h4 translate>IMPORT_SETTINGS</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.create" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_CREATE'
                         | translate}}"></field>
-                <field type="bool" model="$ctrl.importData.update" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_UPDATE'
+                    </div>
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.failOnError" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_FAIL_ON_ERROR'
                         | translate}}"></field>
-                <field type="bool" model="$ctrl.importData.failOnError" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_FAIL_ON_ERROR'
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.update" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_UPDATE'
                         | translate}}"></field>
-                <field type="bool" model="$ctrl.importData.dryRun" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_SIMULATION'
+                    </div>
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.dryRun" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_SIMULATION'
                         | translate}}"></field>
-
+                    </div>
+                </div>
                 <div ng-repeat="defaultValue in $ctrl.defaultValues">
                     <field name="defaultValue.name" type="single-choice"
                            values="defaultValue.values"
@@ -34,7 +45,11 @@
             <div class="form-group">
                 <label for="importFile" translate>IMPORT_CHOOSE_FILE</label>
                 <input type="file" id="importFile" fileread="$ctrl.importData.file">
-                <p class="help-block">{{::$ctrl.translationPrefix+'_IMPORT_FILE_EXAMPLE' | translate}}</p>
+
+                <p class="help-block" translate>IMPORT_FILE_EXAMPLE</p>
+                <pre>
+{{::$ctrl.fileExample}}
+                </pre>
             </div>
         </form>
     </div>

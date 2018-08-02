@@ -1,10 +1,11 @@
-module.exports = /* @ngInject */function ($scope, $state, importItems, translationPrefix, defaultValues) {
+module.exports = /* @ngInject */function (importItems, translationPrefix, defaultValues, fileExample) {
   var controller = this
   controller.translationPrefix = translationPrefix
   controller.defaultValues = defaultValues
+  controller.fileExample = fileExample
   controller.importing = false
   controller.importData = {
-    create: true,
+    create: false,
     update: false,
     failOnError: false,
     dryRun: false,
