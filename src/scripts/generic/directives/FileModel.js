@@ -1,12 +1,12 @@
 module.exports = /* @ngInject */function () {
   return {
     scope: {
-      fileread: '='
+      fileModel: '='
     },
     link: function (scope, element) {
       element.bind('change', function (changeEvent) {
         scope.$apply(function () {
-          scope.fileread = changeEvent.target.files[0]
+          scope.fileModel = changeEvent.target.multiple ? changeEvent.target.files : changeEvent.target.files[0]
         })
       })
     }

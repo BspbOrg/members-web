@@ -8,6 +8,13 @@
     <span>{{::$ctrl.translationPrefix+'_IMPORT_TITLE' | translate}}</span>
 </page-header>
 
+<div ng-if="$ctrl.error" class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" aria-label="Close" ng-click="$ctrl.error = null">
+        <span aria-hidden="true">&times</span>
+    </button>
+    <strong>{{::'IMPORT_ERROR'|translate}}</strong> {{$ctrl.error.message || $ctrl.error}}
+</div>
+
 <div class="row">
     <div class="col-md-12">
         <form>
@@ -44,7 +51,7 @@
 
             <div class="form-group">
                 <label for="importFile" translate>IMPORT_CHOOSE_FILE</label>
-                <input type="file" id="importFile" fileread="$ctrl.importData.file">
+                <input type="file" id="importFile" file-model="$ctrl.importData.file">
 
                 <p class="help-block" translate>IMPORT_FILE_EXAMPLE</p>
                 <pre>
@@ -54,9 +61,9 @@
         </form>
     </div>
 </div>
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default" ng-if="$ctrl.response && !$ctrl.importing">

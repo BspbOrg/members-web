@@ -115,6 +115,7 @@
   "IMPORT_RESULTS_ERRORS_HEADER_ERROR_DETAIL": "Грешка",
   "IMPORT_FILE_EXAMPLE": "Примерен файл",
   "IMPORT_PROGRESS": "Импортиране на данни",
+  "IMPORT_ERROR": "Грешка:",
   "MEMBER_IMPORT_TITLE": "Импортиране на членове",
   "MEMBER_IMPORT_SETTINGS_CREATE": "Създаване на нови членове",
   "MEMBER_IMPORT_SETTINGS_UPDATE": "Обновяване на съществуващи членове",

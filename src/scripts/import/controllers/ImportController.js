@@ -14,6 +14,8 @@ module.exports = /* @ngInject */function (importItems, translationPrefix, defaul
 
   controller.import = function () {
     controller.importing = true
+    controller.error = null
+    controller.response = null
     importItems(Object.assign({}, controller.importData, {defaults: JSON.stringify(controller.importData.defaults)}))
       .then(function (response) {
         controller.response = response.data
@@ -21,7 +23,7 @@ module.exports = /* @ngInject */function (importItems, translationPrefix, defaul
       })
       .catch(function (err) {
         controller.importing = false
-        console.log(err)
+        controller.error = err.data ? err.data.error : err
       })
   }
 }
