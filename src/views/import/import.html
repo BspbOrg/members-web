@@ -1,0 +1,122 @@
+<page-header>
+    <actions>
+        <a role="button" class="btn btn-primary" ng-click="$ctrl.import()">
+            <i class="glyphicon glyphicon-import"></i>
+            <translate>IMPORT_BUTTON</translate>
+        </a>
+    </actions>
+    <span>{{::$ctrl.translationPrefix+'_IMPORT_TITLE' | translate}}</span>
+</page-header>
+
+<div ng-if="$ctrl.error" class="alert alert-danger alert-dismissable" role="alert">
+    <button type="button" class="close" aria-label="Close" ng-click="$ctrl.error = null">
+        <span aria-hidden="true">&times</span>
+    </button>
+    <strong>{{::'IMPORT_ERROR'|translate}}</strong> {{$ctrl.error.message || $ctrl.error}}
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <h4 translate>IMPORT_SETTINGS</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.create" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_CREATE'
+                        | translate}}"></field>
+                    </div>
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.update" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_UPDATE'
+                        | translate}}"></field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.failOnError" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_FAIL_ON_ERROR'
+                        | translate}}"></field>
+                    </div>
+                    <div class="col-md-6">
+                        <field type="bool" model="$ctrl.importData.dryRun" label="{{::$ctrl.translationPrefix+'_IMPORT_SETTINGS_SIMULATION'
+                        | translate}}"></field>
+                    </div>
+                </div>
+                <div ng-repeat="defaultValue in $ctrl.defaultValues">
+                    <field name="defaultValue.name" type="single-choice"
+                           values="defaultValue.values"
+                           label="{{defaultValue.label | translate}}"
+                           model="$ctrl.importData.defaults[defaultValue.name]"
+                    ></field>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="importFile" translate>IMPORT_CHOOSE_FILE</label>
+                <input type="file" id="importFile" file-model="$ctrl.importData.file">
+
+                <p class="help-block" translate>IMPORT_FILE_EXAMPLE</p>
+                <pre>
+{{::$ctrl.fileExample}}
+                </pre>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default" ng-if="$ctrl.response && !$ctrl.importing">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <translate>IMPORT_RESULTS_TITLE</translate>
+                    <div class="pull-right">
+                        <translate>IMPORT_RESULTS_TOTAL_ROWS</translate>
+                        {{$ctrl.response.totalRows}}
+                    </div>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt translate>IMPORT_RESULTS_NEW_RECORDS</dt>
+                    <dd>{{$ctrl.response.inserts}}</dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                    <dt translate>IMPORT_RESULTS_UPDATED_RECORDS</dt>
+                    <dd>{{$ctrl.response.updates}}</dd>
+                </dl>
+
+                <dl class="dl-horizontal">
+                    <dt translate>IMPORT_RESULTS_IGNORED_RECORDS</dt>
+                    <dd>{{$ctrl.response.ignored}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt translate>IMPORT_RESULTS_ERRORS</dt>
+                    <dd>{{$ctrl.response.errors}}</dd>
+                </dl>
+                <table class="table table-striped" ng-if="$ctrl.response.errors">
+                    <thead>
+                    <th translate>IMPORT_RESULTS_ERRORS_HEADER_ROW</th>
+                    <th translate>IMPORT_RESULTS_ERRORS_HEADER_ERROR_DETAIL</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in $ctrl.response.errorDetails">
+                        <td>{{row.row}}</td>
+                        <td>{{row.error}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="progress" ng-if="$ctrl.importing">
+            <div class="progress-bar progress-bar-striped active"
+                 role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="1" style="width: 100%">
+                <strong translate>IMPORT_PROGRESS</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<page-footer>
+</page-footer>

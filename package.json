@@ -63,6 +63,7 @@
     "cross-env": "^5.1.5",
     "envify": "^4.1.0",
     "font-awesome": "^4.7.0",
+    "form-data": "^2.3.2",
     "less": "^3.0.4",
     "less-plugin-clean-css": "^1.5.1",
     "lodash.mapvalues": "^4.6.0",
