@@ -5,6 +5,10 @@ switch (process.env.NODE_ENV || 'development') {
     app.constant('ENDPOINT_URL', 'http://localhost:5000')
     break
   default:
-    app.constant('ENDPOINT_URL', 'https://bspb-members-staging.herokuapp.com')
+    if (global.location.host.match('staging')) {
+      app.constant('ENDPOINT_URL', 'https://bspb-members-staging.herokuapp.com')
+    } else {
+      app.constant('ENDPOINT_URL', 'https://api.members.bspb.org')
+    }
     break
 }
