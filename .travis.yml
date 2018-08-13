@@ -14,7 +14,9 @@ deploy:
   skip-cleanup: true
   github-token: $GH_TOKEN
   local-dir: public
-  fqdn: members.bspb.org
+  repo: BspbOrg/staging.members.bspb.org
+  target-branch: master
+  fqdn: staging.members.bspb.org
   on:
     branch: master
 env:
