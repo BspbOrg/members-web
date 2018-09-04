@@ -1,10 +1,11 @@
 var noop = function () {}
 
-module.exports = /* @ngInject */function ($controller, $scope, Payment, translationPrefix) {
+module.exports = /* @ngInject */function ($controller, $scope, Payment, translationPrefix, options) {
   var $ctrl = $controller('ModelController', {
     $scope: $scope,
     model: Payment,
-    translationPrefix: translationPrefix
+    translationPrefix: translationPrefix,
+    options: options
   })
 
   $ctrl.$onInit = (function (superOnInit) {
@@ -26,7 +27,7 @@ module.exports = /* @ngInject */function ($controller, $scope, Payment, translat
     payment.members = $ctrl.addToMembers(payment.members, payment.billingMemberId)
   }
 
-  $ctrl.onMembersChange = function (payment) {
+  $ctrl.onMembershipChange = function (payment) {
     payment = payment || $ctrl.data
     payment.amount = $ctrl.getPaymentAmount(payment.membershipType)
   }

@@ -14,13 +14,23 @@
             <small>{{::$ctrl.data.category}}</small>
         </h3>
         <div class="row">
+            <div class="col-md-6">
+                <i class="fa fa-clock-o fa-fw"></i>
+                {{$ctrl.data.membershipStartDate | date}}
+                -
+                {{$ctrl.data.membershipEndDate | date}}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_PHONE' | translate}}">
                 <i class="fa fa-mobile-phone fa-fw"></i>
-                {{$ctrl.data.phone || '-'}}
+                <a ng-if="$ctrl.data.phone" href="tel:{{$ctrl.data.phone}}">{{$ctrl.data.phone}}</a>
+                <span ng-if="!$ctrl.data.phone">-</span>
             </div>
             <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_EMAIL' | translate}}">
                 <i class="fa fa-at fa-fw"></i>
-                {{$ctrl.data.email || '-'}}
+                <a ng-if="$ctrl.data.email" href="mailto:{{$ctrl.data.email}}">{{$ctrl.data.email}}</a>
+                <span ng-if="!$ctrl.data.email">-</span>
             </div>
             <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_FULL_ADDRESS' | translate}}">
                 <i class="fa fa-envelope fa-fw"></i>

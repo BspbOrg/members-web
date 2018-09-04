@@ -1,5 +1,11 @@
 <sb-include src="/views/fields/container.html">
   <ui-select
+          ng-init="field.values=[
+            {id: 'card', label: 'Банкова карта'},
+            {id: 'epay', label: 'E-pay'},
+            {id: 'bank', label: 'Платежно нареждане'},
+            {id: 'office', label: 'в офиса на БДЗП'}
+          ]"
           input-id="{{::field.name}}"
           input-name="{{::field.name}}"
           ng-model="field.model"

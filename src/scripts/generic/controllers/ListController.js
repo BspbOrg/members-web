@@ -5,10 +5,12 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
 
   controller.canExport = true
   controller.filter = angular.copy($stateParams)
+  delete controller.filter.id
   controller.maxExportCount = 20000
   controller.recordPerPage = 50
   controller.selectedRows = []
   controller.translationPrefix = translationPrefix
+  controller.endOfPages = false
 
   controller.updateFilter = function () {
     var filter = mapValues(controller.filter, function (value) {
@@ -19,6 +21,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       notify: false
     })
     angular.extend($stateParams, filter)
+    delete controller.filter.id
     controller.requestRows()
   }
 
@@ -72,10 +75,16 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       })
   }
 
-  function fetch (query) {
+  function cancelPending () {
+    controller.loading = false
     if (controller.pending && controller.pending.$cancelRequest) {
       controller.pending.$cancelRequest()
     }
+    controller.pending = null
+  }
+
+  function fetch (query) {
+    cancelPending()
     var q = controller.loading = angular.extend({}, query, {context: controller.context})
     controller.pending = model.query(q)
     controller.pending.$promise
@@ -139,7 +148,15 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
     controller.filter.limit = controller.recordPerPage
     fetch(controller.filter)
   }
-  controller.requestRows()
+  if (!controller.endOfPages) {
+    controller.requestRows()
+  }
+
+  controller.setRows = function (rows) {
+    cancelPending()
+    controller.rows = rows
+    controller.endOfPages = true
+  }
 
   controller.nextPage = function (count) {
     fetch(angular.extend({}, controller.filter, {

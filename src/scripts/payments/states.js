@@ -22,6 +22,9 @@ module.exports = /* @ngInject */function ($stateProvider) {
           controller: 'ModelController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        options: function () { return {getArgs: {context: 'view'}} }
       }
     })
     .state('auth.payments.detail.edit', {
@@ -29,9 +32,12 @@ module.exports = /* @ngInject */function ($stateProvider) {
       views: {
         'content@auth': {
           templateUrl: '/views/payments/edit.html',
-          controller: 'ModelController',
+          controller: 'PaymentController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        options: function () { return {getArgs: {context: 'edit'}} }
       }
     })
     .state('auth.payments.new', {
@@ -42,6 +48,9 @@ module.exports = /* @ngInject */function ($stateProvider) {
           controller: 'PaymentController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        options: function () { return {getArgs: {context: 'edit'}} }
       }
     })
 }

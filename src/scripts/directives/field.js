@@ -74,9 +74,9 @@ require('../app').directive('field', /* @ngInject */function ($q) {
 
       field.autocomplete = $attrs.autocomplete
       field.order = function (item) {
-        return item && item.toString().replace(/\d+/g, function (digits) {
+        return item && (item.label || item.toString()).replace(/\d+/g, function (digits) {
           return ((new Array(20).join('0')) + digits).substr(-20, 20)
-        })
+        }).toLowerCase()
       }
 
       field.onSelect = function (args) {
@@ -94,8 +94,8 @@ require('../app').directive('field', /* @ngInject */function ($q) {
 
       if ($attrs.valuesModel) {
         var valueModel = $injector.get($attrs.valuesModel)
-        valueModel.query({}).$promise.then(function (list) {
-          field.values = list
+        valueModel.query({limit: -1, context: 'short'}).$promise.then(function (list) {
+          field.values = $filter('orderBy')(list, field.order)
         })
       }
 

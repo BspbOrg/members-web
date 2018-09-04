@@ -1,8 +1,13 @@
-module.exports = /* @ngInject */ function ($state, $stateParams, $injector, translationPrefix, Member) {
-  var $ctrl = this
+module.exports = /* @ngInject */ function (
+  $scope, $state, $stateParams,
+  $injector, $controller,
+  translationPrefix, Member) {
+  var $ctrl = $controller('ModelController', {
+    $scope: $scope,
+    model: Member,
+    translationPrefix: translationPrefix,
+    options: {}
+  })
 
-  $ctrl.translationPrefix = translationPrefix
-
-  $ctrl.data = Member.get({id: $stateParams.id})
-  $ctrl.data.id = $stateParams.id
+  return $ctrl
 }

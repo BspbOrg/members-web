@@ -1,25 +1,38 @@
 <sb-include src="/views/fields/container.html">
-  <ol
-    class="nya-bs-select form-control"
-    id="{{::field.name}}"
-    name="{{::field.name}}"
-    aria-describedby="{{::field.name}}HelpBlock"
-    placeholder="{{::field.placeholder}}"
-    ng-model="field.model"
-    ng-change="field.onSelect()"
-    multiple
-    selected-text-format="count>3"
-    live-search="true"
-    size="7"
-  >
-    <li nya-bs-option="value in field.values | orderBy:field.order" data-value="value.id">
-      <a href>
-        <span>{{::value.label}}</span>
-        <span class="glyphicon glyphicon-ok check-mark">
-          <span lang="bg" class="hidden">избран</span>
-          <span lang="en" class="hidden">selected</span>
-        </span>
-      </a>
-    </li>
-  </ol>
+  <ui-select
+          input-id="{{::field.name}}"
+          input-name="{{::field.name}}"
+          multiple
+          ng-model="field.model"
+          ng-disabled="field.disabled"
+          on-remove="field.onSelect()"
+          on-select="field.onSelect()">
+    <ui-select-match placeholder="{{::field.placeholder}}">{{$item.label}}</ui-select-match>
+    <ui-select-choices repeat="value.id as value in field.values | filter:$select.search">
+      <span ng-bind-html="value.label | highlight: $select.search"></span>
+    </ui-select-choices>
+  </ui-select>
+  <!--<ol-->
+    <!--class="nya-bs-select form-control"-->
+    <!--id="{{::field.name}}"-->
+    <!--name="{{::field.name}}"-->
+    <!--aria-describedby="{{::field.name}}HelpBlock"-->
+    <!--placeholder="{{::field.placeholder}}"-->
+    <!--ng-model="field.model"-->
+    <!--ng-change="field.onSelect()"-->
+    <!--multiple-->
+    <!--selected-text-format="count>3"-->
+    <!--live-search="true"-->
+    <!--size="7"-->
+  <!--&gt;-->
+    <!--<li nya-bs-option="value in field.values | orderBy:field.order" data-value="value.id">-->
+      <!--<a href>-->
+        <!--<span>{{::value.label}}</span>-->
+        <!--<span class="glyphicon glyphicon-ok check-mark">-->
+          <!--<span lang="bg" class="hidden">избран</span>-->
+          <!--<span lang="en" class="hidden">selected</span>-->
+        <!--</span>-->
+      <!--</a>-->
+    <!--</li>-->
+  <!--</ol>-->
 </sb-include>

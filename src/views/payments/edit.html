@@ -20,29 +20,41 @@
                    model="$ctrl.data.paymentDate"
             ></field>
 
+            <field name="membershipType" type="single-choice" required="true" values="[
+                    {id: 'regular', label: 'Индивидуално (лица над 18г.)'},
+                    {id: 'family', label: 'Семейно (родители и деца, живеещи на един адрес)'},
+                    {id: 'discounted', label: 'Младежи (под 18г.) и пенсионери'},
+                    {id: 'group', label: 'Групово членство (мин. 5 човека)'}
+                    ]"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERSHIP_TYPE' | translate}}"
+                   model="$ctrl.data.membershipType"
+            ></field>
+
             <field name="amount" type="currency" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_AMOUNT' | translate}}"
                    model="$ctrl.data.amount"
             ></field>
 
-            <field name="membershipType" type="text" required="false"
-                   label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERSHIP_TYPE' | translate}}"
-                   model="$ctrl.data.membershipType"
-            ></field>
-
-            <field name="paymentType" type="text" required="false"
+            <field name="paymentType" type="single-choice" required="true" values="[
+                    {id: 'card', label: 'Банкова карта'},
+                    {id: 'epay', label: 'E-pay'},
+                    {id: 'bank', label: 'Платежно нареждане'},
+                    {id: 'office', label: 'в офиса на БДЗП'}
+                    ]"
                    label="{{::$ctrl.translationPrefix+'_FIELD_PAYMENT_TYPE' | translate}}"
                    model="$ctrl.data.paymentType"
             ></field>
 
-            <field name="members" type="multiple-choice" values-model="Member"
-                   label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERS' | translate}}"
-                   model="$ctrl.data.members"
-            ></field>
-
-            <field name="billingMemberId" type="single-choice" values-model="Member"
+            <field name="billingMember" type="single-choice" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_BILLING_MEMBER_ID' | translate}}"
                    model="$ctrl.data.billingMemberId"
+                   on-select="$ctrl.onBillingMemberChange()"
+            ></field>
+
+            <field name="members" type="multiple-choice" values-model="Member" required="true"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERS' | translate}}"
+                   model="$ctrl.data.members"
+                   on-select="$ctrl.onMembersChange()"
             ></field>
 
         </form>

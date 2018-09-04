@@ -37,11 +37,6 @@
                    model="$ctrl.data.amount"
             ></field>
 
-            <!--<field name="membershipType" type="text" required="false"-->
-                   <!--label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERSHIP_TYPE' | translate}}"-->
-                   <!--model="$ctrl.data.membershipType"-->
-            <!--&gt;</field>-->
-
             <field name="paymentType" type="single-choice" required="true" values="[
                     {id: 'card', label: 'Банкова карта'},
                     {id: 'epay', label: 'E-pay'},
@@ -52,7 +47,7 @@
                    model="$ctrl.data.paymentType"
             ></field>
 
-            <field name="billingMemberId" type="single-choice" values-model="Member" required="true"
+            <field name="billingMember" type="single-choice" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_BILLING_MEMBER_ID' | translate}}"
                    model="$ctrl.data.billingMemberId"
                    on-select="$ctrl.onBillingMemberChange()"

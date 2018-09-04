@@ -24,6 +24,6 @@
             {{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_TITLE' | translate}}
             <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_SUBTITLE' | translate}}</p>
         </h2>
-        <list-members member-ids="$ctrl.data.members"></list-members>
+        <list-members members="$ctrl.data.members" template="_table-short"></list-members>
     </div>
 </div>

@@ -133,5 +133,6 @@
   "FAMILY_IMPORT_SETTINGS_CREATE": "Създаване на нови членове на семейство",
   "FAMILY_IMPORT_SETTINGS_UPDATE": "Обновяване на съществуващи членове",
   "FAMILY_IMPORT_SETTINGS_FAIL_ON_ERROR": "Прекратяване при грешка",
-  "FAMILY_IMPORT_SETTINGS_SIMULATION": "Симулация"
+  "FAMILY_IMPORT_SETTINGS_SIMULATION": "Симулация",
+  "PAYMENT_SUCCESS_SAVE": "Плащането е записано успешно"
 }

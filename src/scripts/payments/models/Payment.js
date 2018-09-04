@@ -1,4 +1,4 @@
-module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
+module.exports = /* @ngInject */function ($resource, ENDPOINT_URL, Member) {
   var Model = $resource(ENDPOINT_URL + '/payment/:id', {
     id: '@id'
   }, {

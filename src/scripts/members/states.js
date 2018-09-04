@@ -22,6 +22,9 @@ module.exports = /* @ngInject */function ($stateProvider) {
           controller: 'MemberController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        options: function () { return {getArgs: {context: 'view'}} }
       }
     })
     .state('auth.members.detail.edit', {
@@ -32,6 +35,9 @@ module.exports = /* @ngInject */function ($stateProvider) {
           controller: 'ModelController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        options: function () { return {getArgs: {context: 'edit'}} }
       }
     })
     .state('auth.members.new', {
@@ -42,6 +48,9 @@ module.exports = /* @ngInject */function ($stateProvider) {
           controller: 'ModelController',
           controllerAs: '$ctrl'
         }
+      },
+      resolve: {
+        options: function () { return {getArgs: {context: 'edit'}} }
       }
     })
 }
