@@ -10,7 +10,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="row in $ctrl.rows | filter:$ctrl.filterRows(data.filter) | orderBy:data.order.key:data.order.reverse">
+    <tr ng-repeat="row in $ctrl.rows">
         <td class="col-xs-1 text-right nav-link"><a ui-sref="auth.members.detail({id: row.id})">{{row.id}}</a></td>
         <td class="col-xs-5 nav-link"><a ui-sref="auth.members.detail({id: row.id})">{{row.firstName}} {{row.middleName}} {{row.lastName}}</a></td>
     </tr>

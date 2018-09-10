@@ -91,15 +91,10 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       .then(function (rows) {
         if (!angular.equals(controller.loading, q)) return
         controller.count = rows.$$response && rows.$$response.data && rows.$$response.data.$$response && rows.$$response.data.$$response.count
-        Array.prototype.push.apply(controller.rows, rows)
+        controller.rows = [].concat(controller.rows, rows)
         controller.endOfPages = !rows.length
-        return controller.rows
-      })
-      .finally(function () {
-        if (angular.equals(controller.loading, q)) {
-          controller.loading = false
-          controller.pending = null
-        }
+        controller.loading = false
+        controller.pending = null
       })
     return controller.pending.$promise
   }
