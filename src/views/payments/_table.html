@@ -27,7 +27,7 @@
         <td class="col-md-1 text-right nav-link">
             <a ui-sref="auth.payments.detail({id: row.id})">{{row.id}}</a>
         </td>
-        <td class="col-md-1 text-right">{{row.amount | currency}}</td>
+        <td class="col-md-1 text-right">{{row.amount | lCurrency}}</td>
         <td class="col-md-2 text-right">{{row.paymentDate | date}}</td>
         <td class="col-md-4 text-center">{{row.membershipType}}</td>
         <td class="col-md-4 text-center">{{row.paymentType}}</td>

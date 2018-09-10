@@ -13,7 +13,7 @@
         </h3>
         <dl class="dl-horizontal">
             <dt>{{::$ctrl.translationPrefix+'_LABEL_AMOUNT'|translate}}</dt>
-            <dd>{{::$ctrl.data.amount | currency}}</dd>
+            <dd>{{::$ctrl.data.amount | lCurrency}}</dd>
             <dt>{{::$ctrl.translationPrefix+'_LABEL_PAYMENT_DATE'|translate}}</dt>
             <dd>{{::$ctrl.data.paymentDate | date}}</dd>
         </dl>

@@ -12,6 +12,7 @@ var dependencies = [
   require('angular-resource'),
   require('angular-sanitize'),
   require('angular-animate'),
+  require('angular-i18n/bg'),
 
   require('@uirouter/angularjs').default,
   require('angular-ui-bootstrap'),
