@@ -5,6 +5,11 @@
 >
     <thead>
     <tr>
+        <th class="text-center nav-link">
+            <label>
+                <input type="checkbox" ng-model="$ctrl.allSelected" ng-click="$ctrl.toggleSelected()">
+            </label>
+        </th>
         <th class="col-md-1 text-right" sortable-column="id">#</th>
         <th class="col-md-1 text-right" sortable-column="amount">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_AMOUNT' | translate}}
@@ -21,19 +26,30 @@
     </tr>
     </thead>
     <tbody>
-    <tr
-            ng-repeat="row in $ctrl.rows"
-    >
+    <tr ng-repeat="row in $ctrl.rows">
+        <th scope="row" class="text-center nav-link">
+            <label>
+                <input type="checkbox" ng-model="row.$selected" ng-click="$ctrl.toggleSelected(row)">
+            </label>
+        </th>
         <td class="col-md-1 text-right nav-link">
-            <a ui-sref="auth.payments.detail({id: row.id})">{{row.id}}</a>
+            <payment-link payment="row">{{row.id}}</payment-link>
         </td>
-        <td class="col-md-1 text-right">{{row.amount | lCurrency}}</td>
-        <td class="col-md-2 text-right">{{row.paymentDate | date}}</td>
-        <td class="col-md-4 text-center">{{row.membershipType}}</td>
-        <td class="col-md-4 text-center">{{row.paymentType}}</td>
+        <td class="col-md-1 text-right">
+            <payment-link payment="row">{{row.amount | lCurrency}}</payment-link>
+        </td>
+        <td class="col-md-2 text-right">
+            <payment-link payment="row">{{row.paymentDate | date}}</payment-link>
+        </td>
+        <td class="col-md-4 text-center">
+            <payment-link payment="row">{{row.membershipType | membershipType}}</payment-link>
+        </td>
+        <td class="col-md-4 text-center">
+            <payment-link payment="row">{{row.paymentType | paymentType}}</payment-link>
+        </td>
     </tr>
     <tr ng-if="$ctrl.loading">
-        <td colspan="5">
+        <td colspan="6">
             <div class="text-center">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>

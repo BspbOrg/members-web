@@ -38,9 +38,13 @@
     > tr {
       > th,
       > td {
+        > label {
+          &:extend(.table > tbody > tr > td > a);
+        }
         &.nav-link {
           padding: 0;
-          > a {
+          > a,
+          > label {
             padding: @table-cell-padding;
             display: block;
           }

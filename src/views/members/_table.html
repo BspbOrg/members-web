@@ -5,14 +5,19 @@
 >
     <thead>
     <tr>
-        <th><input type="checkbox" ng-model="$ctrl.allSelected" ng-click="$ctrl.toggleSelected()"></th>
+        <th class="text-center nav-link">
+            <label>
+                <input type="checkbox" ng-model="$ctrl.allSelected" ng-click="$ctrl.toggleSelected()">
+            </label>
+        </th>
         <th class="col-xs-1 text-right" sortable-column="id">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_ID' | translate}}
         </th>
-        <th class="col-xs-5" sortable-column="firstName+middleName+lastName">
+        <th class="col-xs-7" sortable-column="firstName+middleName+lastName">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_NAME' | translate}}
         </th>
-        <th class="col-xs-4" sortable-column="membershipExpire|date:'yyyyMMddHHmmss'">
+        <th>&nbsp;</th>
+        <th class="col-xs-2" sortable-column="membershipExpire|date:'yyyyMMddHHmmss'">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_MEMBERSHIP_EXPIRE' | translate}}
         </th>
         <th class="col-xs-2" sortable-column="uninterruptedMembershipSince|date:'yyyyMMddHHmmss'">
@@ -21,15 +26,41 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="row in $ctrl.rows">
-        <td><input type="checkbox" ng-model="row.$selected" ng-click="$ctrl.toggleSelected(row)"></td>
-        <td class="col-xs-1 text-right nav-link"><a ui-sref="auth.members.detail({id: row.id})">{{row.id}}</a></td>
-        <td class="col-xs-5">{{row.firstName}} {{row.middleName}} {{row.lastName}}</td>
-        <td class="col-xs-4">{{(row.membershipEndDate | date) || '-'}}</td>
-        <td class="col-xs-2">{{(row.membershipStartDate | date) || '-'}}</td>
+    <tr
+            ng-repeat="row in $ctrl.rows"
+            ng-class="{
+            info: row.$selected,
+            danger: !row.$selected && row.membershipIsExpired()
+        }">
+        <th scope="row" class="text-center nav-link">
+            <label>
+                <input id="row{{row.id}}" type="checkbox" ng-model="row.$selected" ng-click="$ctrl.toggleSelected(row)">
+            </label>
+        </th>
+        <td class="col-xs-1 text-right nav-link">
+            <label for="row{{row.id}}">{{row.id}}</label>
+        </td>
+        <td class="col-xs-7 nav-link">
+            <member-link member="row">{{row.firstName}} {{row.middleName}} {{row.lastName}}</member-link>
+        </td>
+        <td class="text-right">
+            <i
+                    class="fa fa-exclamation-circle text-danger"
+                    title="{{::$ctrl.translationPrefix+'_EXPIRED_MEMBERSHIP' | translate}}"
+                    ng-if="row.membershipIsExpired()"></i>
+            <span ng-if="!row.membershipIsExpired()">&nbsp;</span>
+        </td>
+        <td class="col-xs-2 nav-link text-nowrap">
+            <member-link member="row">
+                {{(row.membershipEndDate | date) || '-'}}
+            </member-link>
+        </td>
+        <td class="col-xs-2 nav-link">
+            <member-link member="row">{{(row.membershipStartDate | date) || '-'}}</member-link>
+        </td>
     </tr>
     <tr ng-if="$ctrl.loading">
-        <td colspan="6">
+        <td colspan="5">
             <div class="text-center">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>

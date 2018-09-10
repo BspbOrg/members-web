@@ -5,17 +5,19 @@
     {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
 </page-header>
 
-<div class="row">
+<div class="row" ng-if="$ctrl.data.id">
     <div class="col-md-12">
         <h3>
-            {{::$ctrl.data.membershipType}}
-            <small>{{::$ctrl.data.paymentType}}</small>
+            <span>{{::($ctrl.data.membershipType | membershipType) || '-'}}</span>
+            <small>{{::($ctrl.data.paymentType | paymentType) || '-'}}</small>
         </h3>
         <dl class="dl-horizontal">
             <dt>{{::$ctrl.translationPrefix+'_LABEL_AMOUNT'|translate}}</dt>
             <dd>{{::$ctrl.data.amount | lCurrency}}</dd>
             <dt>{{::$ctrl.translationPrefix+'_LABEL_PAYMENT_DATE'|translate}}</dt>
             <dd>{{::$ctrl.data.paymentDate | date}}</dd>
+            <dt>{{::$ctrl.translationPrefix+'_LABEL_BILLING_MEMBER'|translate}}</dt>
+            <dd><member-link member="::$ctrl.data.billingMember">{{::$ctrl.data.billingMember | member}}</member-link></dd>
         </dl>
     </div>
 

@@ -15,6 +15,9 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
     },
     toString: function () {
       return this.getName()
+    },
+    membershipIsExpired: function () {
+      return new Date(this.membershipEndDate).getTime() < Date.now()
     }
   })
 

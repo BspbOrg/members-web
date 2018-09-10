@@ -20,12 +20,8 @@
                    model="$ctrl.data.paymentDate"
             ></field>
 
-            <field name="membershipType" type="single-choice" required="true" values="[
-                    {id: 'regular', label: 'Индивидуално (лица над 18г.)'},
-                    {id: 'family', label: 'Семейно (родители и деца, живеещи на един адрес)'},
-                    {id: 'discounted', label: 'Младежи (под 18г.) и пенсионери'},
-                    {id: 'group', label: 'Групово членство (мин. 5 човека)'}
-                    ]"
+            <field name="membershipType" type="single-choice" required="true"
+                   values="$nomenclatures.list('membershipType')"
                    label="{{::$ctrl.translationPrefix+'_FIELD_MEMBERSHIP_TYPE' | translate}}"
                    model="$ctrl.data.membershipType"
             ></field>
@@ -35,12 +31,8 @@
                    model="$ctrl.data.amount"
             ></field>
 
-            <field name="paymentType" type="single-choice" required="true" values="[
-                    {id: 'card', label: 'Банкова карта'},
-                    {id: 'epay', label: 'E-pay'},
-                    {id: 'bank', label: 'Платежно нареждане'},
-                    {id: 'office', label: 'в офиса на БДЗП'}
-                    ]"
+            <field name="paymentType" type="single-choice" required="true"
+                   values="$nomenclatures.list('paymentType')"
                    label="{{::$ctrl.translationPrefix+'_FIELD_PAYMENT_TYPE' | translate}}"
                    model="$ctrl.data.paymentType"
             ></field>

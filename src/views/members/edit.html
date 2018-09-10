@@ -30,11 +30,8 @@
                    model="$ctrl.data.lastName"
             ></field>
 
-            <field name="category" type="select" values="::[
-                {id: 'student', label: 'CATEGORY_STUDENT'},
-                {id: 'regular', label: 'CATEGORY_REGULAR'},
-                {id: 'retired', label: 'CATEGORY_RETIRED'}
-            ]" required="true"
+            <field name="category" type="select" required="true"
+                   values="$nomenclatures.list('memberCategory')"
                    label="{{::$ctrl.translationPrefix+'_FIELD_CATEGORY' | translate}}"
                    model="$ctrl.data.category"
             ></field>
