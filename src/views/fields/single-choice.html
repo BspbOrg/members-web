@@ -6,7 +6,7 @@
           ng-disabled="field.disabled"
           on-remove="field.onSelect()"
           on-select="field.onSelect()">
-    <ui-select-match placeholder="{{::field.placeholder}}">{{$select.selected.label || $select.selected}}</ui-select-match>
+    <ui-select-match placeholder="{{::field.placeholder}}" allow-clear>{{$select.selected.label || $select.selected}}</ui-select-match>
     <ui-select-choices repeat="value.id as value in field.values | filter:$select.search">
       <span ng-bind-html="(value.label || value) | highlight: $select.search"></span>
     </ui-select-choices>

@@ -7,6 +7,58 @@
     <p class="small">{{ ::$ctrl.translationPrefix+'_LIST_TITLE_SECONDARY' | translate}}</p>
 </page-header>
 
+<uib-accordion>
+    <div uib-accordion-group class="panel-default" is-open="$ctrl.filtersOpen">
+        <uib-accordion-heading>
+            {{::$ctrl.translationPrefix+'_LIST_FILTER_TITLE' | translate}}
+            <span ng-if="$ctrl.filtersCount()" class="badge">{{$ctrl.filtersCount()}}</span>
+            <i class="pull-right fa"
+               ng-class="{'fa-chevron-down': $ctrl.filtersOpen, 'fa-chevron-right': !$ctrl.filtersOpen}"></i>
+        </uib-accordion-heading>
+        <div class="panel-body">
+
+            <form role="form" class="form form-filter"
+                  ng-submit="$event.preventDefault(); $ctrl.updateFilter()">
+
+                <field name="membershipType" type="single-choice"
+                       values="$nomenclatures.list('membershipType')"
+                       label="{{::$ctrl.translationPrefix+'_LIST_FILTER_MEMBERSHIP_TYPE' | translate}}"
+                       model="$ctrl.filter.membershipType"
+                       on-select="$ctrl.updateFilter()"
+                ></field>
+
+                <field name="paymentType" type="single-choice"
+                       values="$nomenclatures.list('paymentType')"
+                       label="{{::$ctrl.translationPrefix+'_LIST_FILTER_PAYMENT_TYPE' | translate}}"
+                       model="$ctrl.filter.paymentType"
+                       on-select="$ctrl.updateFilter()"
+                ></field>
+
+                <field name="fromDate" type="date"
+                       label="{{::$ctrl.translationPrefix+'_LIST_FILTER_FROM_DATE' | translate}}"
+                       model="$ctrl.filter.fromDate"
+                       on-select="$ctrl.updateFilter()"
+                ></field>
+
+                <field name="toDate" type="date"
+                       label="{{::$ctrl.translationPrefix+'_LIST_FILTER_TO_DATE' | translate}}"
+                       model="$ctrl.filter.toDate"
+                       on-select="$ctrl.updateFilter()"
+                ></field>
+
+                <div class="form-group">
+                    <button type="submit"
+                            class="btn btn-default"
+                    >{{::$ctrl.translationPrefix+'_LIST_SEARCH'|translate}}
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</uib-accordion>
+
 <div class="row">
     <div class="col-lg-12">
         <table-payments></table-payments>

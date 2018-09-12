@@ -1,7 +1,7 @@
 module.exports = /* @ngInject */function ($stateProvider) {
   $stateProvider
     .state('auth.payments', {
-      url: '/payments',
+      url: '/payments?membershipType&paymentType&fromDate&toDate',
       views: {
         'content': {
           templateUrl: '/views/payments/list.html',

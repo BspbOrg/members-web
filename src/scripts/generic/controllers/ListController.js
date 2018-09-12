@@ -16,14 +16,24 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
     var filter = mapValues(controller.filter, function (value) {
       return value && angular.isFunction(value.toJSON) ? value.toJSON() : value
     })
+    delete filter.id
     if (angular.equals(filter, $stateParams)) { return }
+    filter.filtersOpen = controller.filtersOpen
     $state.go('.', filter, {
       notify: false
     })
-    angular.extend($stateParams, filter)
-    delete controller.filter.id
-    controller.requestRows()
+    // controller.requestRows()
   }
+
+  controller.filtersCount = function () {
+    return Object
+      .keys(controller.filter)
+      .filter(function (key) {
+        return key !== '#' && key !== 'limit' && key !== 'offset' && controller.filter[key] && key !== 'filtersOpen'
+      })
+      .length
+  }
+  controller.filtersOpen = controller.filtersCount() > 0
 
   controller.toggleSelected = function (row) {
     if (!row) {

@@ -19,6 +19,9 @@
                clear-text="{{'DATE_SELECTOR_CLEAR' | translate}}"
         >
         <span class="input-group-btn">
+      <button ng-if="field.model" type="button" class="btn btn-danger" ng-click="field.model = null; field.onSelect()">
+        &times;
+      </button>
       <button type="button" class="btn btn-default" ng-click="field.opened = true">
         <i class="glyphicon glyphicon-calendar"></i>
       </button>

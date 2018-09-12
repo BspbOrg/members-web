@@ -157,5 +157,14 @@
   "CONFIRM_DIALOG_BUTTON_CONFIRM": "Потвърждение",
   "CONFIRM_DIALOG_BUTTON_CANCEL": "Отказ",
   "PAYMENT_LIST_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на {{count === 1 ? 'плащането' : count + ' плащания'}}",
-  "MEMBER_LIST_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на {{count === 1 ? 'досието' : count + ' досиета'}}"
+  "MEMBER_LIST_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на {{count === 1 ? 'досието' : count + ' досиета'}}",
+  "PAYMENT_LIST_FILTER_MEMBERSHIP_TYPE": "Членство",
+  "PAYMENT_LIST_FILTER_PAYMENT_TYPE": "Вид плащане",
+  "PAYMENT_LIST_SEARCH": "Търсене",
+  "PAYMENT_LIST_FILTER_TITLE": "Филтри",
+  "DATE_SELECTOR_TODAY": "Днес",
+  "DATE_SELECTOR_CLEAR": "Изчистване",
+  "DATE_SELECTOR_OK": "ОК",
+  "PAYMENT_LIST_FILTER_FROM_DATE": "От дата",
+  "PAYMENT_LIST_FILTER_TO_DATE": "До дата"
 }
