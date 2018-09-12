@@ -2,8 +2,8 @@
         class="btn btn-danger"
         ng-disabled="$ctrl.disabled"
         confirm="{{ $ctrl.translationPrefix+'_BUTTON_DELETE_CONFIRM_MESSAGE' | translate: $ctrl.translationParams }}"
-        ng-click="$ctrl.delete">
+        ng-click="$parent.$parent.$ctrl.deleteRows($parent.$parent.$ctrl.selectedRows)">
     <i class="fa fa-trash fa-fw"></i>
     {{ ::$ctrl.translationPrefix+'_BUTTON_DELETE' | translate }}
-    <span ng-if="$ctrl.selectedRows.length > 1" class="badge">{{ $ctrl.selectedRows.length}}</span>
+    <span ng-if="$parent.$parent.$ctrl.selectedRows.length > 1" class="badge">{{ $parent.$parent.$ctrl.selectedRows.length}}</span>
 </button>

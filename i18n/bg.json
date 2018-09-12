@@ -100,7 +100,6 @@
   "PAYMENT_FIELD_PAYMENT_TYPE": "Вид плащане",
   "PAYMENT_FIELD_MEMBERS": "Членове",
   "PAYMENT_FIELD_BILLING_MEMBER_ID": "Заплатил член",
-  "PAYMENT_ERROR_SAVE": "Грешка при запис",
   "MEMBER_CATEGORY_STUDENT": "Студент",
   "MEMBER_CATEGORY_REGULAR": "Редовен",
   "MEMBER_CATEGORY_RETIRED": "Пенсионер",
@@ -146,5 +145,17 @@
   "FAMILY_IMPORT_SETTINGS_UPDATE": "Обновяване на съществуващи членове",
   "FAMILY_IMPORT_SETTINGS_FAIL_ON_ERROR": "Прекратяване при грешка",
   "FAMILY_IMPORT_SETTINGS_SIMULATION": "Симулация",
-  "PAYMENT_SUCCESS_SAVE": "Плащането е записано успешно"
+  "PAYMENT_SUCCESS_SAVE": "Плащането е записано успешно",
+  "PAYMENT_ERROR_SAVE": "Грешка при записване на плащане:",
+  "PAYMENT_SUCCESS_DELETE": "{{count === 1 ? 'Плащането е изтрито успешно' : 'Успешно изтрити '+count+' плащания'}}",
+  "PAYMENT_ERROR_DELETE": "Грешка при изтриване на плащане:",
+  "MEMBER_SUCCESS_SAVE": "Досието е записано успешно",
+  "MEMBER_ERROR_SAVE": "Грешка при записване на досие:",
+  "MEMBER_SUCCESS_DELETE": "{{count === 1 ? 'Досието е изтрито успешно' : 'Успешно изтрити '+count+' досиета'}}",
+  "MEMBER_ERROR_DELETE": "Грешка при изтриване на досие:",
+  "CONFIRM_DIALOG_TITLE": "Потвърждение",
+  "CONFIRM_DIALOG_BUTTON_CONFIRM": "Потвърждение",
+  "CONFIRM_DIALOG_BUTTON_CANCEL": "Отказ",
+  "PAYMENT_LIST_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на {{count === 1 ? 'плащането' : count + ' плащания'}}",
+  "MEMBER_LIST_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на {{count === 1 ? 'досието' : count + ' досиета'}}"
 }

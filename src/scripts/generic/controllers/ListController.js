@@ -71,7 +71,6 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
               content: '<p>' + message + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
             })
           })
-        return $q.reject(error)
       })
   }
 
