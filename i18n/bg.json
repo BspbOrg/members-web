@@ -166,5 +166,13 @@
   "DATE_SELECTOR_CLEAR": "Изчистване",
   "DATE_SELECTOR_OK": "ОК",
   "PAYMENT_LIST_FILTER_FROM_DATE": "От дата",
-  "PAYMENT_LIST_FILTER_TO_DATE": "До дата"
+  "PAYMENT_LIST_FILTER_TO_DATE": "До дата",
+  "TITLE_LOGIN": "Оторизация",
+  "MEMBER_LIST_FILTER_TITLE": "Филтри",
+  "MEMBER_LIST_EXPORT_TITLE": "Експорт",
+  "MEMBER_EXPORT_CSV": "csv",
+  "MEMBER_ERROR_EXPORT": "Грешка при експортиране:",
+  "PAYMENT_LIST_EXPORT_TITLE": "Експорт",
+  "PAYMENT_EXPORT_CSV": "csv",
+  "PAYMENT_ERROR_EXPORT": "Грешка при експортиране:"
 }

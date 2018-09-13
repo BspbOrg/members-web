@@ -6,6 +6,7 @@ module.exports = require('angular')
     require('@uirouter/angularjs').default,
     require('angular-translate')
   ])
+  .config(require('./config/animation'))
   .controller('ListController', require('./controllers/ListController'))
   .controller('ModelController', require('./controllers/ModelController'))
   .controller('TranslationController', require('./controllers/TranslationController'))

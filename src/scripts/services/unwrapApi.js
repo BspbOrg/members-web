@@ -9,6 +9,7 @@ function defaultResourceResponseInterceptor (response) {
   value && (value.$$response = response)
   return value
 }
+require('../app').constant('defaultResourceResponseInterceptor', defaultResourceResponseInterceptor)
 
 require('../app').config(/* @ngInject */function ($httpProvider, $resourceProvider) {
   var defaults = $httpProvider.defaults

@@ -7,35 +7,57 @@
     <p class="small">{{ ::$ctrl.translationPrefix+'_LIST_TITLE_SECONDARY' | translate}}</p>
 </page-header>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-body">
-
-                <form role="form" class="form-inline form-filter"
-                      ng-submit="$event.preventDefault(); $ctrl.updateFilter()">
-
-                    <div class="form-group">
-                        <label>{{::$ctrl.translationPrefix+'_LIST_FILTER_SEARCH'|translate}}</label>
-                        <input name="search"
-                               type="text"
-                               class="form-control w-100"
-                               ng-model="$ctrl.filter.q"
-                        />
-                    </div>
-
-                    <div class="form-group pull-right">
-                        <button type="submit"
-                                class="btn btn-default"
-                        >{{::$ctrl.translationPrefix+'_LIST_SEARCH'|translate}}</button>
-                    </div>
-
-                </form>
-
-            </div>
+<uib-accordion ng-init="$ctrl.filtersOpen = true" close-others="false">
+    <div uib-accordion-group class="panel-default" is-open="$ctrl.exportsOpen">
+        <uib-accordion-heading>
+            {{::$ctrl.translationPrefix+'_LIST_EXPORT_TITLE' | translate}}
+            <span class="badge">
+                <span ng-if="$ctrl.count !== null">{{$ctrl.selectedRows.length || $ctrl.count}}</span>
+                <i ng-if="$ctrl.count === null" class="fa fa-spinner fa-spin ng-animate-disable"></i>
+            </span>
+            <i class="pull-right fa"
+               ng-class="{'fa-chevron-down': $ctrl.exportsOpen, 'fa-chevron-right': !$ctrl.exportsOpen}"></i>
+        </uib-accordion-heading>
+        <div class="panel-body">
+            <a role="button" class="btn btn-default" href="{{::$ctrl.exportUrl('csv')}}">
+                <i class="fa fa-download fa-fw"></i>
+                {{::$ctrl.translationPrefix+'_EXPORT_CSV' | translate}}
+            </a>
         </div>
     </div>
-</div>
+    <div uib-accordion-group class="panel-default" is-open="$ctrl.filtersOpen">
+        <uib-accordion-heading>
+            {{::$ctrl.translationPrefix+'_LIST_FILTER_TITLE' | translate}}
+            <span ng-if="$ctrl.filtersCount()" class="badge">{{$ctrl.filtersCount()}}</span>
+            <i class="pull-right fa"
+               ng-class="{'fa-chevron-down': $ctrl.filtersOpen, 'fa-chevron-right': !$ctrl.filtersOpen}"></i>
+        </uib-accordion-heading>
+        <div class="panel-body">
+
+            <form role="form" class="form form-filter"
+                  ng-submit="$event.preventDefault(); $ctrl.updateFilter()">
+
+                <div class="input-group">
+                    <input name="search"
+                           type="text"
+                           placeholder="{{::$ctrl.translationPrefix+'_LIST_FILTER_SEARCH'|translate}}"
+                           class="form-control"
+                           ng-model="$ctrl.filter.q"
+                    />
+                    <div class="input-group-btn">
+                        <button type="submit"
+                                class="btn btn-default"
+                        >
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</uib-accordion>
 
 <div class="row">
     <div class="col-lg-12">

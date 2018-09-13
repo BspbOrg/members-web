@@ -11,6 +11,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
   controller.selectedRows = []
   controller.translationPrefix = translationPrefix
   controller.endOfPages = false
+  controller.count = null
 
   controller.updateFilter = function () {
     var filter = mapValues(controller.filter, function (value) {
@@ -108,23 +109,37 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
     return controller.pending.$promise
   }
 
+  controller.exportUrl = function (outputType) {
+    var selection = []
+    if (controller.selectedRows && controller.selectedRows.length > 0 && !controller.allSelected && controller.canExport) {
+      selection = controller.selectedRows.map(function (row) { return row.id })
+    }
+    return model.exportUrl(outputType, angular.extend({}, controller.filter, {
+      limit: -1,
+      offset: undefined,
+      outputType: outputType,
+      context: 'export'
+    }, selection ? {selection: selection} : {}))
+  }
+
   controller.export = function (outputType) {
     var selection = []
     if (controller.selectedRows && controller.selectedRows.length > 0 && !controller.allSelected && controller.canExport) {
-      angular.forEach(controller.selectedRows, function (row) {
-        selection.push(row.id)
-      })
+      selection = controller.selectedRows.map(function (row) { return row.id })
     }
     return model
       .export(angular.extend({}, controller.filter, {
         limit: -1,
         offset: 0,
-        outputType: outputType,
-        selection: selection
-      }))
+        outputType: outputType
+      }, selection ? {selection: selection} : {}))
       .$promise
       .then(function (res) {
         return $translate(controller.translationPrefix + '_SUCCESS_EXPORT')
+          .then(function (message) {
+            if (!message.type) return message
+            return $translate(message.type, message)
+          })
           .then(function (message) {
             ngToast.create({
               className: 'success',
@@ -148,6 +163,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
 
   controller.requestRows = function () {
     controller.rows = []
+    controller.count = null
     controller.endOfPages = false
     controller.filter.limit = controller.recordPerPage
     fetch(controller.filter)

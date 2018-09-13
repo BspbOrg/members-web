@@ -8,6 +8,23 @@
 </page-header>
 
 <uib-accordion>
+    <div uib-accordion-group class="panel-default" is-open="$ctrl.exportsOpen">
+        <uib-accordion-heading>
+            {{::$ctrl.translationPrefix+'_LIST_EXPORT_TITLE' | translate}}
+            <span class="badge">
+                <span ng-if="$ctrl.count !== null">{{$ctrl.selectedRows.length || $ctrl.count}}</span>
+                <i ng-if="$ctrl.count === null" class="fa fa-spinner fa-spin ng-animate-disable"></i>
+            </span>
+            <i class="pull-right fa"
+               ng-class="{'fa-chevron-down': $ctrl.exportsOpen, 'fa-chevron-right': !$ctrl.exportsOpen}"></i>
+        </uib-accordion-heading>
+        <div class="panel-body">
+            <a role="button" class="btn btn-default" href="{{::$ctrl.exportUrl('csv')}}">
+                <i class="fa fa-download fa-fw"></i>
+                {{::$ctrl.translationPrefix+'_EXPORT_CSV' | translate}}
+            </a>
+        </div>
+    </div>
     <div uib-accordion-group class="panel-default" is-open="$ctrl.filtersOpen">
         <uib-accordion-heading>
             {{::$ctrl.translationPrefix+'_LIST_FILTER_TITLE' | translate}}

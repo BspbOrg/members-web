@@ -1,3 +1,5 @@
+var queryString = require('query-string')
+
 module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
   var Model = $resource(ENDPOINT_URL + '/member/:id', {
     id: '@id'
@@ -18,6 +20,12 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
     },
     membershipIsExpired: function () {
       return new Date(this.membershipEndDate).getTime() < Date.now()
+    }
+  })
+
+  Object.assign(Model, {
+    exportUrl: function (outputType, query) {
+      return ENDPOINT_URL + '/member.' + outputType + '?' + queryString.stringify(query)
     }
   })
 
