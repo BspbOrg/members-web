@@ -34,7 +34,7 @@ module.exports = /* @ngInject */function () {
         modalInstance.result
           .then(function () {
             setTimeout(function () {
-              $element.triggerHandler({type: 'click', confirmed: true})
+              $element.triggerHandler({ type: 'click', confirmed: true })
             })
           })
           .catch(function () { /* silence unhandled rejection error */ })

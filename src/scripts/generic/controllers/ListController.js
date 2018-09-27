@@ -64,7 +64,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       })
     }))
       .then(function (res) {
-        return $translate(controller.translationPrefix + '_SUCCESS_DELETE', {count: rows.length})
+        return $translate(controller.translationPrefix + '_SUCCESS_DELETE', { count: rows.length })
           .then(function (message) {
             ngToast.create({
               className: 'success',
@@ -95,7 +95,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
 
   function fetch (query) {
     cancelPending()
-    var q = controller.loading = angular.extend({}, query, {context: controller.context})
+    var q = controller.loading = angular.extend({}, query, { context: controller.context })
     controller.pending = model.query(q)
     controller.pending.$promise
       .then(function (rows) {
@@ -119,7 +119,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       offset: undefined,
       outputType: outputType,
       context: 'export'
-    }, selection ? {selection: selection} : {}))
+    }, selection ? { selection: selection } : {}))
   }
 
   controller.export = function (outputType) {
@@ -132,7 +132,7 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
         limit: -1,
         offset: 0,
         outputType: outputType
-      }, selection ? {selection: selection} : {}))
+      }, selection ? { selection: selection } : {}))
       .$promise
       .then(function (res) {
         return $translate(controller.translationPrefix + '_SUCCESS_EXPORT')

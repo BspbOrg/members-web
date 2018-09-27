@@ -83,18 +83,18 @@ require('../app').directive('field', /* @ngInject */function ($q) {
         if (!args) {
           args = {}
         } else if (!angular.isObject(args)) {
-          args = {$arg: args}
+          args = { $arg: args }
         }
         $timeout(function () {
           if (angular.isFunction(field.select)) {
-            field.select(angular.extend({}, args, {model: field.model}))
+            field.select(angular.extend({}, args, { model: field.model }))
           }
         })
       }
 
       if ($attrs.valuesModel) {
         var valueModel = $injector.get($attrs.valuesModel)
-        valueModel.query({limit: -1, context: 'short'}).$promise.then(function (list) {
+        valueModel.query({ limit: -1, context: 'short' }).$promise.then(function (list) {
           field.values = $filter('orderBy')(list, field.order)
         })
       }

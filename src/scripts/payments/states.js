@@ -24,7 +24,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
         }
       },
       resolve: {
-        options: function () { return {getArgs: {context: 'view'}} }
+        options: function () { return { getArgs: { context: 'view' } } }
       }
     })
     .state('auth.payments.detail.edit', {
@@ -37,7 +37,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
         }
       },
       resolve: {
-        options: function () { return {getArgs: {context: 'edit'}} }
+        options: function () { return { getArgs: { context: 'edit' } } }
       }
     })
     .state('auth.payments.new', {
@@ -50,7 +50,7 @@ module.exports = /* @ngInject */function ($stateProvider) {
         }
       },
       resolve: {
-        options: function () { return {getArgs: {context: 'edit'}} }
+        options: function () { return { getArgs: { context: 'edit' } } }
       }
     })
 }

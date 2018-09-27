@@ -96,7 +96,7 @@ module.config(/* @ngInject */function ($locationProvider, $stateProvider, $urlRo
     $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
       if (toState.redirectTo) {
         event.preventDefault()
-        $state.go(toState.redirectTo, toStateParams, {location: 'replace'})
+        $state.go(toState.redirectTo, toStateParams, { location: 'replace' })
         return
       }
 

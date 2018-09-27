@@ -28,9 +28,9 @@ angular
       return function (method, url, data, headers, params) {
         var item = list.filter(filter.bind(null, params)).reduce(reduceIdFinder.bind(null, Number(params.id)), null)
         if (item) {
-          return [200, {data: item}, {}]
+          return [200, { data: item }, {}]
         }
-        return [404, {error: 'Not found'}, {}]
+        return [404, { error: 'Not found' }, {}]
       }
     }
 
@@ -40,7 +40,7 @@ angular
         item.id = list.length + 1
         list.push(item)
         list.save()
-        return [200, {data: item}, {}]
+        return [200, { data: item }, {}]
       }
     }
 
@@ -49,17 +49,17 @@ angular
         var id = Number(params.id)
         var item = list.reduce(reduceIdFinder.bind(null, id), null)
         if (item) {
-          Object.assign(item, JSON.parse(data), {id: id})
+          Object.assign(item, JSON.parse(data), { id: id })
           list.save()
-          return [200, {data: item}, {}]
+          return [200, { data: item }, {}]
         }
-        return [404, {error: 'Not found'}, {}]
+        return [404, { error: 'Not found' }, {}]
       }
     }
 
     $httpBackend.whenGET('/me').respond({
       success: true,
-      data: {id: 1, firstName: 'Admin', lastName: 'Admin', role: 'admin'}
+      data: { id: 1, firstName: 'Admin', lastName: 'Admin', role: 'admin' }
     })
 
     function filterByMemberIds (params, item) {

@@ -27,7 +27,7 @@ module.exports = /* @ngInject */function (
 
   // if updating existing item, load the data
   if ($stateParams.id) {
-    controller.data = Model.get(angular.extend({}, options.getArgs, {id: $stateParams.id}))
+    controller.data = Model.get(angular.extend({}, options.getArgs, { id: $stateParams.id }))
   } else {
     controller.data = new Model(angular.extend({}, options.modelArgs, $stateParams))
   }
@@ -90,7 +90,7 @@ module.exports = /* @ngInject */function (
           controller.form.$setPristine()
         }
         controller.data = res
-        $state.go('^', {id: res.id}, {location: 'replace'})
+        $state.go('^', { id: res.id }, { location: 'replace' })
         return res
       })
       .then(function (res) {

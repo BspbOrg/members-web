@@ -16,7 +16,7 @@ module.exports = /* @ngInject */function (importItems, translationPrefix, defaul
     controller.importing = true
     controller.error = null
     controller.response = null
-    importItems(Object.assign({}, controller.importData, {defaults: JSON.stringify(controller.importData.defaults)}))
+    importItems(Object.assign({}, controller.importData, { defaults: JSON.stringify(controller.importData.defaults) }))
       .then(function (response) {
         controller.response = response.data
         controller.importing = false

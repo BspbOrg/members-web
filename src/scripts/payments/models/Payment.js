@@ -5,8 +5,8 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL, defaultResour
     id: '@id'
   }, {
     // api methods
-    query: {method: 'get', isArray: true, cancellable: true, interceptor: {response: defaultResourceResponseInterceptor}},
-    export: {method: 'POST', url: ENDPOINT_URL + '/export/payment'}
+    query: { method: 'get', isArray: true, cancellable: true, interceptor: { response: defaultResourceResponseInterceptor } },
+    export: { method: 'POST', url: ENDPOINT_URL + '/export/payment' }
   })
 
   // methods

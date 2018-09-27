@@ -5,11 +5,11 @@ module.exports = /* @ngInject */function ($scope, $state, $stateParams, $q, $tim
 
   var id = $stateParams.id || $stateParams.fromId
 
-  controller.data = id ? User.get({id: id}) : new User()
+  controller.data = id ? User.get({ id: id }) : new User()
   controller.data.id = id
   controller.roles = [
-    {id: 'user', label: $translate.instant('USER_DETAIL_ROLE_USER')},
-    {id: 'admin', label: $translate.instant('USER_DETAIL_ROLE_ADMIN')}
+    { id: 'user', label: $translate.instant('USER_DETAIL_ROLE_USER') },
+    { id: 'admin', label: $translate.instant('USER_DETAIL_ROLE_ADMIN') }
   ]
   controller.languages = $translate.getAvailableLanguageKeys().map(function (key) {
     return {
@@ -42,7 +42,7 @@ module.exports = /* @ngInject */function ($scope, $state, $stateParams, $q, $tim
         return $q.reject(error)
       })
       .then(function (res) {
-        $state.go('^.detail', {id: res.id}, {location: 'replace'})
+        $state.go('^.detail', { id: res.id }, { location: 'replace' })
       })
   }
 

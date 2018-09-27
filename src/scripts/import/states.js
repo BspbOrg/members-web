@@ -26,9 +26,9 @@ module.exports = /* @ngInject */function ($stateProvider) {
             {
               name: 'category',
               values: [
-                {id: 'student', label: 'Студент'},
-                {id: 'regular', label: 'Редовен'},
-                {id: 'retired', label: 'Пенсионер'}
+                { id: 'student', label: 'Студент' },
+                { id: 'regular', label: 'Редовен' },
+                { id: 'retired', label: 'Пенсионер' }
               ],
               label: 'MEMBER_IMPORT_CATEGORY'
             }
@@ -57,20 +57,20 @@ module.exports = /* @ngInject */function ($stateProvider) {
             {
               name: 'paymentType',
               values: [
-                {id: 'card', label: 'Банкова карта'},
-                {id: 'epay', label: 'E-pay'},
-                {id: 'bank', label: 'Платежно нареждане'},
-                {id: 'office', label: 'в офиса на БДЗП'}
+                { id: 'card', label: 'Банкова карта' },
+                { id: 'epay', label: 'E-pay' },
+                { id: 'bank', label: 'Платежно нареждане' },
+                { id: 'office', label: 'в офиса на БДЗП' }
               ],
               label: 'PAYMENT_IMPORT_PAYMENT_TYPE'
             },
             {
               name: 'membershipType',
               values: [
-                {id: 'regular', label: 'Индивидуално (лица над 18г.)'},
-                {id: 'family', label: 'Семейно (родители и деца, живеещи на един адрес)'},
-                {id: 'discounted', label: 'Младежи (под 18г.) и пенсионери'},
-                {id: 'group', label: 'Групово членство (мин. 5 човека)'}
+                { id: 'regular', label: 'Индивидуално (лица над 18г.)' },
+                { id: 'family', label: 'Семейно (родители и деца, живеещи на един адрес)' },
+                { id: 'discounted', label: 'Младежи (под 18г.) и пенсионери' },
+                { id: 'group', label: 'Групово членство (мин. 5 човека)' }
               ],
               label: 'PAYMENT_IMPORT_MEMBERSHIP_TYPE'
             }
