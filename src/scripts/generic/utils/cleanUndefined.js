@@ -1,4 +1,5 @@
 module.exports = function cleanUndefined (obj) {
+  if (typeof obj !== 'object') return obj
   return Object
     .keys(obj)
     .filter(function (key) {
