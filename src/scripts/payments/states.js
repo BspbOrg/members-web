@@ -50,7 +50,12 @@ module.exports = /* @ngInject */function ($stateProvider) {
         }
       },
       resolve: {
-        options: function () { return { getArgs: { context: 'edit' } } }
+        options: function () {
+          return {
+            getArgs: { context: 'edit' },
+            modelArgs: { paymentType: 'office' }
+          }
+        }
       }
     })
 }

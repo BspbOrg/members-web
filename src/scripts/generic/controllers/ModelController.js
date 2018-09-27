@@ -1,4 +1,5 @@
 var angular = require('angular')
+var cleanUndefined = require('../utils/cleanUndefined')
 
 /**
  * @param $state
@@ -27,9 +28,9 @@ module.exports = /* @ngInject */function (
 
   // if updating existing item, load the data
   if ($stateParams.id) {
-    controller.data = Model.get(angular.extend({}, options.getArgs, { id: $stateParams.id }))
+    controller.data = Model.get(angular.extend({}, cleanUndefined(options.getArgs), { id: $stateParams.id }))
   } else {
-    controller.data = new Model(angular.extend({}, options.modelArgs, $stateParams))
+    controller.data = new Model(angular.extend({}, cleanUndefined(options.modelArgs), cleanUndefined($stateParams)))
   }
 
   // load the previous/next items to allow navigating
