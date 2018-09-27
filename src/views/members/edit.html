@@ -81,6 +81,11 @@
                    model="$ctrl.data.accessId"
             ></field>
 
+            <field name="familyMembers" type="multiple-choice" values-model="Member" required="true"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_FAMILY_MEMBERS' | translate}}"
+                   model="$ctrl.data.familyMembers"
+            ></field>
+
         </form>
     </div>
 </div>
