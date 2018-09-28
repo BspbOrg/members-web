@@ -25,7 +25,9 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       context: '@?',
       values: '<?',
       min: '<?',
-      max: '<?'
+      max: '<?',
+      newEntry: '&?onNewEntry',
+      newEntryPlaceholder: '@?'
     },
     bindToController: true,
     require: '^form',
@@ -79,11 +81,17 @@ require('../app').directive('field', /* @ngInject */function ($q) {
         }).toLowerCase()
       }
 
-      field.onSelect = function (args) {
+      field.onNewEntry = function (entry) {
+        if (angular.isFunction(field.newEntry)) {
+          return field.newEntry({entry: entry})
+        }
+      }
+
+      field.onSelect = function (args, isAdding) {
         if (!args) {
-          args = {}
-        } else if (!angular.isObject(args)) {
-          args = { $arg: args }
+          args = {isAdding: isAdding}
+        } else {
+          args = {arg: args, isAdding: isAdding}
         }
         $timeout(function () {
           if (angular.isFunction(field.select)) {

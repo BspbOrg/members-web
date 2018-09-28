@@ -75,10 +75,8 @@ module.exports = /* @ngInject */function (
       })
       // process preSave hook if any
       .then(function (data) {
-        if (angular.isFunction(data.preSave)) {
-          return $q
-            .resolve(data.preSave())
-            .then(function () { return data })
+        if (angular.isFunction(controller.preSave)) {
+          return controller.preSave(data)
         }
         return data
       })
