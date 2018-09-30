@@ -38,7 +38,8 @@
             </div>
             <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_USERNAME' | translate}}">
                 <i class="fa fa-user fa-fw"></i>
-                {{$ctrl.data.username || '-'}}
+                <a ng-if="$ctrl.data.username" href="http://bspb.org/bg/become-a-member.html?type=existing&login_username={{$ctrl.data.username}}">{{$ctrl.data.username}}</a>
+                <span ng-if="!$ctrl.data.username">-</span>
             </div>
             <div class="col-md-4" title="{{::$ctrl.translationPrefix+'_FIELD_CARD_ID' | translate}}">
                 <i class="fa fa-address-card fa-fw"></i>
