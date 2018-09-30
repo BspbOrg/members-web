@@ -81,9 +81,10 @@
                    model="$ctrl.data.accessId"
             ></field>
 
-            <field name="familyMembers" type="multiple-choice" values-model="Member" required="true"
+            <field name="familyMembers" type="multiple-choice-with-new-entry" values-model="Member" required="true"
                    label="{{::$ctrl.translationPrefix+'_FIELD_FAMILY_MEMBERS' | translate}}"
-                   model="$ctrl.data.familyMembers"
+                   model="$ctrl.data.familyMembers" on-new-entry="$ctrl.onNewMemberEntry(entry)" new-entry-placeholder="({{::$ctrl.translationPrefix+'_FIELD_FAMILY_MEMBERS_NEW_MEMBER_PLACEHOLDER' | translate}})"
+                   on-select="$ctrl.onFamilyMemberSelect(arg, isAdding, model)"
             ></field>
 
         </form>

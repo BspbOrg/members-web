@@ -55,7 +55,6 @@
     <div class="col-md-12" ng-if="$ctrl.data.familyMembers && $ctrl.data.familyMembers.length > 0">
         <h2>
             {{::$ctrl.translationPrefix+'_DETAIL_FAMILY_TITLE' | translate}}
-            <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_FAMILY_SUBTITLE' | translate}}</p>
         </h2>
         <list-members members="$ctrl.data.familyMembers" template="_table-short"></list-members>
     </div>

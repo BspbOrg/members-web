@@ -1,0 +1,22 @@
+<sb-include src="/views/fields/container.html">
+    <ui-select
+            input-id="{{::field.name}}"
+            input-name="{{::field.name}}"
+            multiple
+            ng-model="field.model"
+            ng-disabled="field.disabled"
+            on-remove="field.onSelect($item, false)"
+            on-select="field.onSelect($item, true)"
+            tagging="field.onNewEntry">
+        <ui-select-match placeholder="{{::field.placeholder}}{{$item.id}}">
+            <strong ng-if="$item.isTag">{{$item.label + '*'}}</strong>
+            <span ng-if="!$item.isTag">{{$item.label}}</span>
+        </ui-select-match>
+        <!--<ui-select-match ng-if="!$item.id" placeholder="{{::field.placeholder}}">{{$item.label}}</ui-select-match>-->
+        <!--<ui-select-match placeholder="{{::field.placeholder}}">{{$item.label}}</ui-select-match>-->
+        <ui-select-choices repeat="value.id as value in field.values | filter:$select.search">
+            <span ng-if="value.isTag" ng-bind-html="(value.label | highlight: $select.search) + (field.newEntryPlaceholder ? ' ' + field.newEntryPlaceholder : '')"></span>
+            <span ng-if="!value.isTag" ng-bind-html="value.label | highlight: $select.search"></span>
+        </ui-select-choices>
+    </ui-select>
+</sb-include>
