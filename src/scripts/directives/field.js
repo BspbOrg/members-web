@@ -83,15 +83,15 @@ require('../app').directive('field', /* @ngInject */function ($q) {
 
       field.onNewEntry = function (entry) {
         if (angular.isFunction(field.newEntry)) {
-          return field.newEntry({entry: entry})
+          return field.newEntry({ entry: entry })
         }
       }
 
       field.onSelect = function (args, isAdding) {
         if (!args) {
-          args = {isAdding: isAdding}
+          args = { isAdding: isAdding }
         } else {
-          args = {arg: args, isAdding: isAdding}
+          args = { arg: args, isAdding: isAdding }
         }
         $timeout(function () {
           if (angular.isFunction(field.select)) {
