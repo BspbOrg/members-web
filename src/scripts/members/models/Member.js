@@ -16,7 +16,7 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
       return [this.address, this.city, this.postalCode, this.country].filter(function (a) { return a }).join(',')
     },
     toString: function () {
-      return this.getName()
+      return this.getName() + (this.cardId ? ' (' + this.cardId + ')' : '')
     },
     membershipIsExpired: function () {
       return new Date(this.membershipEndDate).getTime() < Date.now()
