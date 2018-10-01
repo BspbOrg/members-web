@@ -1,6 +1,6 @@
 var noop = function () {}
 
-module.exports = /* @ngInject */function ($controller, $scope, Payment, Member, translationPrefix, options) {
+module.exports = /* @ngInject */function ($controller, $scope, $stateParams, Payment, Member, translationPrefix, options) {
   var $ctrl = $controller('ModelController', {
     $scope: $scope,
     model: Payment,
@@ -14,52 +14,56 @@ module.exports = /* @ngInject */function ($controller, $scope, Payment, Member, 
 
       $ctrl.onBillingMemberChange()
       $ctrl.currentDate = new Date()
+
+      if ($stateParams.billingMemberId && !$stateParams.id) {
+        var payment = $ctrl.data
+        Payment.query({ limit: 1, context: 'short', billingMemberId: $stateParams.billingMemberId }).$promise
+          .then(function (payments) {
+            if (payments.length >= 1) {
+              if (!payment.membershipType) {
+                payment.membershipType = payments[0].membershipType
+                $ctrl.onMembershipChange(payment)
+              }
+              return
+            }
+
+            return Member.get({ id: payment.billingMemberId, context: 'edit' }).$promise
+              .then(function (member) {
+                if (member) {
+                  if (member.familyMembers.length > 0) {
+                    if (!payment.membershipType) {
+                      payment.membershipType = 'family'
+                      $ctrl.onMembershipChange(payment)
+                      member.familyMembers.forEach(function (family) {
+                        payment.members = $ctrl.addToMembers(payment.members, family)
+                      })
+                    }
+                  } else {
+                    if (!payment.membershipType) {
+                      switch (member.category) {
+                        case 'regular':
+                        default:
+                          payment.membershipType = 'regular'
+                          break
+                        case 'retired':
+                        case 'student':
+                          payment.membershipType = 'discounted'
+                          break
+                      }
+                      $ctrl.onMembershipChange(payment)
+                    }
+                  }
+                }
+              })
+          })
+          .catch(noop)
+      }
     }
   })($ctrl.$onInit || noop)
 
   $ctrl.onBillingMemberChange = function (payment) {
     payment = payment || $ctrl.data
     payment.members = $ctrl.replaceMember(payment.members, payment.billingMemberId)
-    Payment.query({ limit: 1, context: 'short', billingMemberId: payment.billingMemberId }).$promise
-      .then(function (payments) {
-        if (payments.length >= 1) {
-          if (!payment.membershipType) {
-            payment.membershipType = payments[0].membershipType
-            $ctrl.onMembershipChange(payment)
-          }
-          return
-        }
-
-        return Member.get({ id: payment.billingMemberId, context: 'edit' }).$promise
-          .then(function (member) {
-            if (member) {
-              if (member.familyMembers.length > 0) {
-                if (!payment.membershipType) {
-                  payment.membershipType = 'family'
-                  $ctrl.onMembershipChange(payment)
-                  member.familyMembers.forEach(function (family) {
-                    payment.members = $ctrl.addToMembers(payment.members, family)
-                  })
-                }
-              } else {
-                if (!payment.membershipType) {
-                  switch (member.category) {
-                    case 'regular':
-                    default:
-                      payment.membershipType = 'regular'
-                      break
-                    case 'retired':
-                    case 'student':
-                      payment.membershipType = 'discounted'
-                      break
-                  }
-                  $ctrl.onMembershipChange(payment)
-                }
-              }
-            }
-          })
-      })
-      .catch(noop)
   }
 
   $ctrl.onMembersChange = function (payment) {
