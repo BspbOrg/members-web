@@ -23,6 +23,10 @@
                 <i class="fa fa-download fa-fw"></i>
                 {{::$ctrl.translationPrefix+'_EXPORT_CSV' | translate}}
             </a>
+            <a role="button" class="btn btn-default" href="{{::$ctrl.exportUrl('csv', {context: 'card-print'})}}">
+                <i class="fa fa-address-card fa-fw"></i>
+                {{::$ctrl.translationPrefix+'_EXPORT_CARD_PRINT' | translate}}
+            </a>
         </div>
     </div>
     <div uib-accordion-group class="panel-default" is-open="$ctrl.filtersOpen">

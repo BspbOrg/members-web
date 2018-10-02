@@ -109,17 +109,22 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
     return controller.pending.$promise
   }
 
-  controller.exportUrl = function (outputType) {
+  controller.exportUrl = function (outputType, opts) {
     var selection = []
     if (controller.selectedRows && controller.selectedRows.length > 0 && !controller.allSelected && controller.canExport) {
       selection = controller.selectedRows.map(function (row) { return row.id })
     }
-    return model.exportUrl(outputType, angular.extend({}, controller.filter, {
-      limit: -1,
-      offset: undefined,
-      outputType: outputType,
-      context: 'export'
-    }, selection ? { selection: selection } : {}))
+    return model.exportUrl(outputType, angular.extend(
+      {},
+      controller.filter,
+      {
+        limit: -1,
+        offset: undefined,
+        outputType: outputType,
+        context: 'export'
+      },
+      selection ? { selection: selection } : {},
+      opts || {}))
   }
 
   controller.export = function (outputType) {

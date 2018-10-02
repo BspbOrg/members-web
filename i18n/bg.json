@@ -178,6 +178,7 @@
   "MEMBER_LIST_FILTER_TITLE": "Филтри",
   "MEMBER_LIST_EXPORT_TITLE": "Експорт",
   "MEMBER_EXPORT_CSV": "csv",
+  "MEMBER_EXPORT_CARD_PRINT": "печат на карти",
   "MEMBER_ERROR_EXPORT": "Грешка при експортиране:",
   "PAYMENT_LIST_EXPORT_TITLE": "Експорт",
   "PAYMENT_EXPORT_CSV": "csv",
