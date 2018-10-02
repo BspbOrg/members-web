@@ -2,31 +2,31 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li class="hidden">
-                <a ui-sref="auth.dashboard()" ui-sref-active="active">
+                <a ui-sref="auth.dashboard($ctrl.resetParams())" ui-sref-active="active">
                     <i class="fa fa-dashboard fa-fw"></i>
                     <translate>NAV_DASHBOARD</translate>
                 </a>
             </li>
             <li ng-if="$root.$user.isAdmin()">
-                <a ui-sref="auth.members()" ui-sref-active="active">
+                <a ui-sref="auth.members($ctrl.resetParams())" ui-sref-active="active">
                     <i class="fa fa-users fa-fw"></i>
                     <translate>NAV_MEMBERS</translate>
                 </a>
             </li>
             <li ng-if="$root.$user.isAdmin()">
-                <a ui-sref="auth.payments()" ui-sref-active="active">
+                <a ui-sref="auth.payments($ctrl.resetParams())" ui-sref-active="active">
                     <i class="fa fa-file fa-fw"></i>
                     <translate>NAV_PAYMENTS</translate>
                 </a>
             </li>
             <li ng-if="$root.$user.isAdmin()" class="hidden">
-                <a ui-sref="auth.users()" ui-sref-active="active">
+                <a ui-sref="auth.users($ctrl.resetParams())" ui-sref-active="active">
                     <i class="fa fa-users fa-fw"></i>
                     <translate>NAV_USERS</translate>
                 </a>
             </li>
             <li ng-if="$root.$user.isAdmin()" class="hidden">
-                <a ui-sref="auth.nomenclatures()" ui-sref-active="active">
+                <a ui-sref="auth.nomenclatures($ctrl.resetParams())" ui-sref-active="active">
                     <i class="fa fa-database fa-fw"></i>
                     <translate>NAV_NOMENCLATURES</translate>
                 </a>
@@ -36,21 +36,22 @@
                     <i class="glyphicon glyphicon-import"></i>
                     <translate>NAV_IMPORT</translate>
                 </a>
-                <ul class="nav collapse" role="menu" aria-labelledby="sidebar-import" uib-collapse="$ctrl.isImportCollapsed">
+                <ul class="nav collapse" role="menu" aria-labelledby="sidebar-import"
+                    uib-collapse="$ctrl.isImportCollapsed">
                     <li>
-                        <a ui-sref="auth.import.members()" ui-sref-active="active">
+                        <a ui-sref="auth.import.members($ctrl.resetParams())" ui-sref-active="active">
                             <i class="fa fa-users fa-fw"></i>
                             <translate>NAV_IMPORT_MEMBERS</translate>
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="auth.import.family" ui-sref-active="active">
+                        <a ui-sref="auth.import.family($ctrl.resetParams())" ui-sref-active="active">
                             <i class="fa fa-users fa-fw"></i>
                             <translate>NAV_IMPORT_FAMILY_MEMBERS</translate>
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="auth.import.payments" ui-sref-active="active">
+                        <a ui-sref="auth.import.payments($ctrl.resetParams())" ui-sref-active="active">
                             <i class="fa fa-file fa-fw"></i>
                             <translate>NAV_IMPORT_PAYMENTS</translate>
                         </a>
