@@ -13,7 +13,10 @@
         <th class="col-xs-1 text-right" sortable-column="id">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_ID' | translate}}
         </th>
-        <th class="col-xs-7" sortable-column="firstName+middleName+lastName">
+        <th class="col-xs-1 text-right" sortable-column="cardId">
+            {{::$ctrl.translationPrefix+'_LIST_TABLE_CARD_ID' | translate}}
+        </th>
+        <th class="col-xs-6" sortable-column="firstName+middleName+lastName">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_NAME' | translate}}
         </th>
         <th>&nbsp;</th>
@@ -40,7 +43,10 @@
         <td class="col-xs-1 text-right nav-link">
             <label for="row{{row.id}}">{{row.id}}</label>
         </td>
-        <td class="col-xs-7 nav-link">
+        <td class="col-xs-1 text-right nav-link">
+            <member-link member="row">{{row.cardId || '-'}}</member-link>
+        </td>
+        <td class="col-xs-6 nav-link">
             <member-link member="row">{{row.firstName}} {{row.middleName}} {{row.lastName}}</member-link>
         </td>
         <td class="text-right">

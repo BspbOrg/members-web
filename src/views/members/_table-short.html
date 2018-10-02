@@ -1,8 +1,11 @@
 <table class="table table-striped table-hover">
     <thead>
     <tr>
-        <th class="col-xs-3 text-right" sortable-column="id">
+        <th class="col-xs-1 text-right" sortable-column="id">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_ID' | translate}}
+        </th>
+        <th class="col-xs-2 text-right" sortable-column="id">
+            {{::$ctrl.translationPrefix+'_LIST_TABLE_CARD_ID' | translate}}
         </th>
         <th class="col-xs-9" sortable-column="firstName+middleName+lastName">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_NAME' | translate}}
@@ -15,8 +18,11 @@
             ng-class="{
             info: $parent.$parent.$ctrl.data.billingMemberId === row.id
             }">
-        <td class="col-xs-3 text-right nav-link">
+        <td class="col-xs-1 text-right nav-link">
             <member-link member="row">{{row.id}}</member-link>
+        </td>
+        <td class="col-xs-2 text-right nav-link">
+            <member-link member="row">{{row.cardId || '-'}}</member-link>
         </td>
         <td class="col-xs-9 nav-link">
             <member-link member="row">
