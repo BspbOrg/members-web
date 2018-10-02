@@ -1,6 +1,6 @@
 {
   "name": "bspb-members-web",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Management system for BSPB members",
   "main": "index.js",
   "repository": {
