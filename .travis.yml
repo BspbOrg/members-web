@@ -10,15 +10,23 @@ script: npm run build && npm test
 after_script: greenkeeper-lockfile-upload
 before_deploy: npm run build
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GH_TOKEN
-  local-dir: public
-  repo: BspbOrg/staging.members.bspb.org
-  target-branch: master
-  fqdn: staging.members.bspb.org
-  on:
-    branch: master
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GH_TOKEN
+    local-dir: public
+    fqdn: members.bspb.org
+    on:
+      branch: production
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GH_TOKEN
+    local-dir: public
+    repo: BspbOrg/staging.members.bspb.org
+    target-branch: master
+    fqdn: staging.members.bspb.org
+    on:
+      branch: master
 env:
   global:
     secure: WdHkyUwXOdBt47f/rGcovMd38MFCc8iNNPVT1UgXGJ/aFqFuzDTNV1ggMRGoepTq73BP96l2R1vUHr32jBKTBMMddFURp3pXQZOQhWa1MbgKil/jn0r8xmWRwYnZqi5OFC26XruT3c8QeRPG8vi9gJ20+iwCfv02EREExv6MGslgKJdxP0kaJbqcx1BzM7TvzYlL4ILFKtE68Cis4bz/l2VPnud+YLt0MP/mk+jE/0H4X8ygxTVIg3bPBkVLD9KGvO+Et4LP36hK74SajLPD3siloqGCk+FTbXrnP9JEGXeUbNvQ7NA3WJi6A+81vAIrv1tzr6Q19sxT0nForbsi+73ln8Hy8yQjewYdTmuAwg/OVtiInH8BP4CP13p5u5co/CQ3srTZEcOJ8T8n8RiCiUxOPug+M6jNLnlbrxqWNxMmkCi17PgUAsu9DtpsoRhsUOiZyqO9ZWjJoV43OfcPf4HJnjqF/A8UuPPOsp2o/i461PCN7EV3sfx28J8jdb9PTtUPb+kGrYSQWjZ5P/ClfcYbsu5nrgWos9hDmduKmSsAAOtDSSisZWyW5VZfJmIYF7LnOJl88ObUeWEpLjyGg1qLf1I0wkYi4u6BB29YzyFxU7jwLO7hglGo9VgvFCz7PznNmHbIYmXN36LFiEmMDRAlB4NLIdiNUkDJlgMm0bk=
+
