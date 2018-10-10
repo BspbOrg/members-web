@@ -30,12 +30,14 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       newEntryPlaceholder: '@?'
     },
     bindToController: true,
-    require: '^form',
+    require: ['^form', 'field'],
     templateUrl: function ($element, $attrs) {
       return '/views/fields/' + ($attrs.type || 'general') + '.html'
     },
-    link: function ($scope, $element, $attrs, formCtrl) {
-      $scope.form = formCtrl
+    link: function ($scope, $element, $attrs, ctrls) {
+      var formCtrl = ctrls[0]
+      var fieldCtrl = ctrls[1]
+      fieldCtrl.form = formCtrl
     },
     controllerAs: 'field',
     controller: /* @ngInject */function ($scope, $attrs, $filter, $injector, $parse, $rootElement, $timeout, $translate) {
@@ -46,7 +48,6 @@ require('../app').directive('field', /* @ngInject */function ($q) {
       }
 
       field.$onInit = function () {
-        field.form = $scope.form
         field.$attrs = $attrs
         field.type = $attrs.type
         field.required = angular.isDefined($attrs.required)
@@ -98,6 +99,12 @@ require('../app').directive('field', /* @ngInject */function ($q) {
             field.select(angular.extend({}, args, { model: field.model }))
           }
         })
+      }
+
+      field.clear = function () {
+        field.model = null
+        field.form.$setDirty()
+        field.onSelect()
       }
 
       if ($attrs.valuesModel) {
