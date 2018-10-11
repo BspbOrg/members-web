@@ -41,22 +41,32 @@
             <form role="form" class="form form-filter"
                   ng-submit="$event.preventDefault(); $ctrl.updateFilter()">
 
-                <div class="input-group">
-                    <input name="search"
-                           type="text"
-                           placeholder="{{::$ctrl.translationPrefix+'_LIST_FILTER_SEARCH'|translate}}"
-                           class="form-control"
-                           ng-model="$ctrl.filter.q"
-                    />
-                    <div class="input-group-btn">
-                        <button type="submit"
-                                class="btn btn-default"
-                        >
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
+                <field name="search" type="text"
+                       label="{{::$ctrl.translationPrefix+'_LIST_FILTER_SEARCH'|translate}}"
+                       placeholder="{{::$ctrl.translationPrefix+'_LIST_FILTER_SEARCH_PLACEHOLDER' | translate}}"
+                       model="$ctrl.filter.q"
+                ></field>
+
+                <field name="category" type="select"
+                       values="$nomenclatures.list('memberCategory')"
+                       placeholder="{{::$ctrl.translationPrefix+'_LIST_FILTER_CATEGORY_PLACEHOLDER' | translate}}"
+                       label="{{::$ctrl.translationPrefix+'_LIST_FILTER_CATEGORY' | translate}}"
+                       model="$ctrl.filter.category"
+                ></field>
+
+                <div class="form-group">
+                    <label for="expiredMembership">{{::$ctrl.translationPrefix+'_LIST_FILTER_EXPIRED_MEMBERSHIP' | translate}}</label>
+                    <input id="expiredMembership" type="checkbox" ng-true-value="'1'" ng-false-value="'0'"
+                           ng-model="$ctrl.filter.expiredMembership"
+                    >
                 </div>
 
+                <div class="form-group">
+                    <button type="submit"
+                            class="btn btn-default"
+                    >{{::$ctrl.translationPrefix+'_LIST_SEARCH'|translate}}
+                    </button>
+                </div>
             </form>
 
         </div>
