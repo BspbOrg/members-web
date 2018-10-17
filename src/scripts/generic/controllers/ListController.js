@@ -51,6 +51,8 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       })
       controller.allSelected = controller.selectedRows.length === controller.rows.length
     }
+    controller.exportUrlCsv = controller.exportUrl('csv')
+    controller.exportUrlCsvCard = controller.exportUrl('csv', { context: 'card-print' })
   }
 
   controller.deleteRows = function (rows) {
@@ -165,6 +167,9 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
         return $q.reject(error)
       })
   }
+
+  controller.exportUrlCsv = controller.exportUrl('csv')
+  controller.exportUrlCsvCard = controller.exportUrl('csv', { context: 'card-print' })
 
   controller.requestRows = function () {
     controller.rows = []
