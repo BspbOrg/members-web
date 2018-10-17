@@ -19,11 +19,11 @@
                ng-class="{'fa-chevron-down': $ctrl.exportsOpen, 'fa-chevron-right': !$ctrl.exportsOpen}"></i>
         </uib-accordion-heading>
         <div class="panel-body">
-            <a role="button" class="btn btn-default" href="{{::$ctrl.exportUrl('csv')}}">
+            <a role="button" class="btn btn-default" href="{{$ctrl.exportUrlCsv}}">
                 <i class="fa fa-download fa-fw"></i>
                 {{::$ctrl.translationPrefix+'_EXPORT_CSV' | translate}}
             </a>
-            <a role="button" class="btn btn-default" href="{{::$ctrl.exportUrl('csv', {context: 'card-print'})}}">
+            <a role="button" class="btn btn-default" href="{{$ctrl.exportUrlCsvCard}}">
                 <i class="fa fa-address-card fa-fw"></i>
                 {{::$ctrl.translationPrefix+'_EXPORT_CARD_PRINT' | translate}}
             </a>
