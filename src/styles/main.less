@@ -53,3 +53,17 @@
     }
   }
 }
+
+.sorted {
+  white-space: nowrap;
+  &.asc:after {
+    content: "▲";
+  }
+  &.desc:after {
+    content: "▼";
+  }
+  &:after {
+    .text-muted;
+    display: inline-block;
+  }
+}
