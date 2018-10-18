@@ -10,17 +10,17 @@
                 <input type="checkbox" ng-model="$ctrl.allSelected" ng-click="$ctrl.toggleSelected()">
             </label>
         </th>
-        <th class="col-md-1 text-right" sortable-column="id">#</th>
-        <th class="col-md-1 text-right" sortable-column="amount">
+        <th class="col-md-1 text-right" ng-click="$ctrl.orderBy($event, 'id')">#</th>
+        <th class="col-md-1 text-right" ng-click="$ctrl.orderBy($event, 'amount')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_AMOUNT' | translate}}
         </th>
-        <th class="col-md-2 text-right" sortable-column="paymentDate">
+        <th class="col-md-2 text-right" ng-click="$ctrl.orderBy($event, 'paymentDate')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_PAYMENT_DATE' | translate}}
         </th>
-        <th class="col-md-4 text-center" sortable-column="membershipType">
+        <th class="col-md-4 text-center" ng-click="$ctrl.orderBy($event, 'membershipType')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_MEMBERSHIP_TYPE' | translate}}
         </th>
-        <th class="col-md-4 text-center" sortable-column="paymentType">
+        <th class="col-md-4 text-center" ng-click="$ctrl.orderBy($event, 'paymentType')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_PAYMENT_TYPE' | translate}}
         </th>
     </tr>
