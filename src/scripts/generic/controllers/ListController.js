@@ -171,6 +171,8 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
     controller.count = null
     controller.endOfPages = false
     controller.filter.limit = controller.recordPerPage
+    controller.filter.order = controller.order && controller.order.key
+    controller.filter.asc = controller.order && !controller.order.reverse
     fetch(controller.filter)
   }
   if (!controller.endOfPages) {
@@ -188,5 +190,18 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
       offset: controller.rows.length,
       limit: count || controller.recordPerPage
     }))
+  }
+
+  controller.order = {}
+  controller.orderBy = function (event, key) {
+    var element = angular.element(event.currentTarget)
+
+    if (controller.order.elem) { controller.order.elem.removeClass('sorted asc desc') }
+    controller.order.reverse = controller.order.key === key && !controller.order.reverse
+    controller.order.key = key
+    controller.order.elem = element
+
+    element.addClass('sorted').addClass(controller.order.reverse ? 'desc' : 'asc')
+    controller.requestRows()
   }
 }
