@@ -10,23 +10,23 @@
                 <input type="checkbox" ng-model="$ctrl.allSelected" ng-click="$ctrl.toggleSelected()">
             </label>
         </th>
-        <th class="col-xs-1 text-right" sortable-column="id">
+        <th class="col-xs-1 text-right" ng-click="$ctrl.orderBy($event, 'id')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_ID' | translate}}
         </th>
-        <th class="col-xs-1 text-right" sortable-column="cardId">
+        <th class="col-xs-1 text-right" ng-click="$ctrl.orderBy($event, 'cardId')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_CARD_ID' | translate}}
         </th>
-        <th class="col-xs-6" sortable-column="firstName+middleName+lastName">
+        <th class="col-xs-6" ng-click="$ctrl.orderBy($event, 'firstName+middleName+lastName')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_NAME' | translate}}
         </th>
         <th>&nbsp;</th>
-        <th class="col-xs-2" sortable-column="membershipExpire|date:'yyyyMMddHHmmss'">
+        <th class="col-xs-2" ng-click="$ctrl.orderBy($event, 'membershipEndDate')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_MEMBERSHIP_EXPIRE' | translate}}
         </th>
-        <th class="col-xs-2" sortable-column="uninterruptedMembershipSince|date:'yyyyMMddHHmmss'">
+        <th class="col-xs-2" ng-click="$ctrl.orderBy($event, 'membershipStartDate')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_UNINTERRUPTED_MEMBERSHIP_SINCE' | translate}}
         </th>
-        <th class="col-xs-2" sortable-column="membershipFirstDate|date:'yyyyMMddHHmmss'">
+        <th class="col-xs-2" ng-click="$ctrl.orderBy($event, 'membershipFirstDate')">
             {{::$ctrl.translationPrefix+'_LIST_TABLE_MEMBERSHIP_FIRST_DATE' | translate}}
         </th>
     </tr>
