@@ -1,5 +1,14 @@
 <page-header>
     <actions>
+        <button type="button"
+                class="btn btn-danger"
+                ng-disabled="!$ctrl.data.id || !$ctrl.data.email"
+                confirm="Ще изпратите истински имейл до този човек. Моля потвърдете!"
+                ng-click="$ctrl.sendReminder()">
+            <i class="fa fa-envelope fa-fw"></i>
+            Напомняне
+        </button>
+
         <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
         <button-new translation-prefix="MEMBER_PAYMENT" ui-sref="auth.payments.new({billingMemberId: $ctrl.data.id})"></button-new>
     </actions>

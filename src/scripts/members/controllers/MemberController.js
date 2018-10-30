@@ -58,5 +58,9 @@ module.exports = /* @ngInject */ function (
       })
   }
 
+  $ctrl.sendReminder = function () {
+    Member.sendReminder({ memberId: $ctrl.data.id })
+  }
+
   return $ctrl
 }
