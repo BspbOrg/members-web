@@ -5,6 +5,7 @@ module.exports = /* @ngInject */function ($resource, ENDPOINT_URL) {
     id: '@id'
   }, {
     // api methods
+    sendReminder: { method: 'POST', url: ENDPOINT_URL + '/sendReminder' }
   })
 
   // methods
