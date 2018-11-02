@@ -54,6 +54,21 @@
                        model="$ctrl.filter.category"
                 ></field>
 
+                <div class="form-group row">
+                    <div class="col-lg-6">
+                        <field name="paymentFromDate" type="date"
+                               label="{{::$ctrl.translationPrefix+'_LIST_FILTER_PAYMENT_FROM_DATE' | translate}}"
+                               model="$ctrl.filter.paymentFromDate"
+                        ></field>
+                    </div>
+                    <div class="col-lg-6">
+                        <field name="paymentToDate" type="date"
+                               label="{{::$ctrl.translationPrefix+'_LIST_FILTER_PAYMENT_TO_DATE' | translate}}"
+                               model="$ctrl.filter.paymentToDate"
+                        ></field>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="expiredMembership">{{::$ctrl.translationPrefix+'_LIST_FILTER_EXPIRED_MEMBERSHIP' | translate}}</label>
                     <input id="expiredMembership" type="checkbox" ng-true-value="'1'" ng-false-value="'0'"
