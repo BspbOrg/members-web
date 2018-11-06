@@ -2,6 +2,13 @@
     <actions>
         <button type="button"
                 class="btn btn-danger"
+                confirm="{{ $ctrl.translationPrefix+'_DETAIL_BUTTON_DELETE_CONFIRM_MESSAGE' | translate}}"
+                ng-click="$ctrl.deleteRecord()">
+            <i class="fa fa-trash fa-fw"></i>
+            {{ ::$ctrl.translationPrefix+'_DETAIL_BUTTON_DELETE' | translate }}
+        </button>
+        <button type="button"
+                class="btn btn-danger"
                 ng-disabled="!$ctrl.data.id || !$ctrl.data.email"
                 confirm="Ще изпратите истински имейл до този човек. Моля потвърдете!"
                 ng-click="$ctrl.sendReminder()">

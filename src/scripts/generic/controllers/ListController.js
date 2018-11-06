@@ -76,12 +76,12 @@ module.exports = /* @ngInject */function ($state, $stateParams, $q, $translate, 
           .then(function () { return res })
       })
       .catch(function (error) {
-        Raven.captureMessage(JSON.stringify(error))
+        Raven.captureMessage(JSON.stringify(error.data || error))
         $translate(controller.translationPrefix + '_ERROR_DELETE')
           .then(function (message) {
             ngToast.create({
               className: 'danger',
-              content: '<p>' + message + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error, null, 2)) + '</pre>'
+              content: '<p>' + message + '</p><pre>' + (error && error.data ? error.data.error : JSON.stringify(error.data || error, null, 2)) + '</pre>'
             })
           })
       })
