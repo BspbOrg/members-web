@@ -67,6 +67,8 @@
   "MEMBER_DETAIL_FAMILY_TITLE": "Семейство",
   "MEMBER_DETAIL_FAMILY_SUBTITLE": "Семейство",
   "MEMBER_DETAIL_DATE_FIRST_REGISTRATION": "Първа регистрация",
+  "MEMBER_DETAIL_BUTTON_DELETE": "Изтриване",
+  "MEMBER_DETAIL_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на досието",
   "MEMBER_TITLE_NEW": "Въвеждане на ново членско досие",
   "MEMBER_TITLE_EDIT": "Редакция на членско досие",
   "MEMBER_FIELD_FIRST_NAME": "Име",
