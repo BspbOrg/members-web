@@ -92,6 +92,11 @@
                    on-select="$ctrl.onFamilyMemberSelect(arg, isAdding, model)"
             ></field>
 
+            <field name="notes" type="memo"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_NOTES' | translate}}"
+                   model="$ctrl.data.notes"
+            ></field>
+
         </form>
     </div>
 </div>

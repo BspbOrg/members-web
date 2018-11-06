@@ -49,6 +49,11 @@
                    on-select="$ctrl.onMembersChange()"
             ></field>
 
+            <field name="notes" type="memo"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_NOTES' | translate}}"
+                   model="$ctrl.data.notes"
+            ></field>
+
         </form>
     </div>
 </div>
