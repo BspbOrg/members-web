@@ -3,7 +3,7 @@
         <button-save form="$ctrl.form" translation-prefix="{{::$ctrl.translationPrefix}}" ng-click="$ctrl.save()"></button-save>
     </actions>
     <span ng-if="!$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_NEW' | translate}}</span>
-    <span ng-if="$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_EDIT' | translate}}</span>
+    <span ng-if="$ctrl.data.id">{{::$ctrl.translationPrefix+'_TITLE_EDIT' | translate}} {{::$ctrl.data.id}}</span>
 </page-header>
 
 <div class="row">

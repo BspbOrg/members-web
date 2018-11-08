@@ -12,7 +12,7 @@
         <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
         <button-new translation-prefix="MEMBER_PAYMENT" ui-sref="auth.payments.new({billingMemberId: $ctrl.data.id})"></button-new>
     </actions>
-    {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
+    {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}} {{::$ctrl.data.id}}
     <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_SUBTITLE'|translate}}</p>
 </page-header>
 

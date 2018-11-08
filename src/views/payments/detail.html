@@ -2,7 +2,7 @@
     <actions>
         <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
     </actions>
-    {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
+    {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}} {{::$ctrl.data.id}}
 </page-header>
 
 <div class="row" ng-if="$ctrl.data.id">
