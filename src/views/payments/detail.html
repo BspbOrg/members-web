@@ -1,5 +1,12 @@
 <page-header>
     <actions>
+        <button type="button"
+                class="btn btn-danger"
+                confirm="{{ $ctrl.translationPrefix+'_DETAIL_BUTTON_DELETE_CONFIRM_MESSAGE' | translate}}"
+                ng-click="$ctrl.deleteRecord()">
+            <i class="fa fa-trash fa-fw"></i>
+            {{ ::$ctrl.translationPrefix+'_DETAIL_BUTTON_DELETE' | translate }}
+        </button>
         <button-edit translation-prefix="{{::$ctrl.translationPrefix}}" ui-sref=".edit"></button-edit>
     </actions>
     {{::$ctrl.translationPrefix+'_DETAIL_TITLE'|translate}}
