@@ -115,12 +115,21 @@ module.exports = /* @ngInject */function (
       .catch(angular.noop) // fix Possibly unhandled rejection
   }
 
-  controller.deleteRecord = function() {
+  controller.deleteRecord = function () {
     return $q
       .resolve(controller.data.$delete())
       .then(function (res) {
-        $state.go('^')
-        return res
+        return $translate(controller.translationPrefix + '_SUCCESS_DELETE', { count: 1 })
+          .then(function (message) {
+            ngToast.create({
+              className: 'success',
+              content: message
+            })
+          })
+          .then(function () {
+            $state.go('^')
+            return res
+          })
       })
       .catch(function (error) {
         Raven.captureMessage(JSON.stringify(error.data || error))

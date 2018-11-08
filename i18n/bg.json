@@ -104,6 +104,8 @@
   "PAYMENT_DETAIL_TITLE": "Плащане",
   "PAYMENT_DETAIL_MEMBERS_TITLE": "Членове",
   "PAYMENT_DETAIL_MEMBERS_SUBTITLE": "за които е заплатен членски внос",
+  "PAYMENT_DETAIL_BUTTON_DELETE": "Изтриване",
+  "PAYMENT_DETAIL_BUTTON_DELETE_CONFIRM_MESSAGE": "Потвърдете изтриването на плащането",
   "PAYMENT_LABEL_AMOUNT": "Сума",
   "PAYMENT_LABEL_PAYMENT_DATE": "Дата",
   "PAYMENT_LABEL_MEMBERSHIP_TYPE": "Членство",
