@@ -59,11 +59,12 @@
                 <i class="fa fa-database fa-fw"></i>
                 {{$ctrl.data.accessId || '-'}}
             </div>
-            <div class="col-md-6" title="{{::$ctrl.translationPrefix+'_FIELD_NOTES' | translate}}">
-                <i class="fa fa-sticky-note fa-fw"></i>
-                {{$ctrl.data.notes || '-'}}
-            </div>
         </div>
+    </div>
+
+    <div class="col-md-12" ng-if="$ctrl.data.notes">
+        <h2>{{::$ctrl.translationPrefix+'_FIELD_NOTES' | translate}}</h2>
+        <pre>{{::$ctrl.data.notes}}</pre>
     </div>
 
     <div class="col-md-12" ng-if="$ctrl.data.familyMembers && $ctrl.data.familyMembers.length > 0">

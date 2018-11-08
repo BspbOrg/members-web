@@ -18,8 +18,6 @@
             <dd>{{::$ctrl.data.paymentDate | date}}</dd>
             <dt>{{::$ctrl.translationPrefix+'_LABEL_BILLING_MEMBER'|translate}}</dt>
             <dd><member-link member="::$ctrl.data.billingMember">{{::$ctrl.data.billingMember | member}}</member-link></dd>
-            <dt>{{::$ctrl.translationPrefix+'_LABEL_NOTES'|translate}}</dt>
-            <dd>{{::$ctrl.data.notes || '-'}}</dd>
         </dl>
     </div>
 
@@ -29,5 +27,10 @@
             <p class="small">{{::$ctrl.translationPrefix+'_DETAIL_MEMBERS_SUBTITLE' | translate}}</p>
         </h2>
         <list-members members="$ctrl.data.members" template="_table-short"></list-members>
+    </div>
+
+    <div class="col-md-12" ng-if="$ctrl.data.notes">
+        <h2>{{::$ctrl.translationPrefix+'_LABEL_NOTES' | translate}}</h2>
+        <pre>{{::$ctrl.data.notes}}</pre>
     </div>
 </div>
