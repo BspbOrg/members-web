@@ -18,6 +18,8 @@
             <dd>{{::$ctrl.data.paymentDate | date}}</dd>
             <dt>{{::$ctrl.translationPrefix+'_LABEL_BILLING_MEMBER'|translate}}</dt>
             <dd><member-link member="::$ctrl.data.billingMember">{{::$ctrl.data.billingMember | member}}</member-link></dd>
+            <dt>{{::$ctrl.translationPrefix+'_LABEL_NOTES'|translate}}</dt>
+            <dd>{{::$ctrl.data.notes || '-'}}</dd>
         </dl>
     </div>
 
