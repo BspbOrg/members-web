@@ -81,6 +81,11 @@
                    model="$ctrl.data.cardId"
             ></field>
 
+            <field name="cardIssued" type="bool"
+                   label="{{::$ctrl.translationPrefix+'_FIELD_CARD_ISSUED' | translate}}"
+                   model="$ctrl.data.cardIssued"
+            ></field>
+
             <field name="accessId" type="text"
                    label="{{::$ctrl.translationPrefix+'_FIELD_ACCESS_ID' | translate}}"
                    model="$ctrl.data.accessId"
