@@ -47,7 +47,19 @@
             <label for="row{{row.id}}">{{row.id}}</label>
         </td>
         <td class="col-xs-1 text-right nav-link">
-            <member-link member="row">{{row.cardId || '-'}}</member-link>
+            <member-link member="row">
+                <i 
+                    ng-if="row.cardIssued === true" 
+                    class="fa fa-address-card-o text-success" 
+                    title="{{::$ctrl.translationPrefix+'_LIST_CARD_ISSUED' | translate}}"
+                ></i>
+                <i 
+                    ng-if="row.cardIssued === false" 
+                    class="fa fa-address-card-o text-danger" 
+                    title="{{::$ctrl.translationPrefix+'_LIST_CARD_NOT_ISSUED' | translate}}"
+                ></i>
+                {{row.cardId || '-'}}
+            </member-link>
         </td>
         <td class="col-xs-6 nav-link">
             <member-link member="row">{{row.firstName}} {{row.middleName}} {{row.lastName}}</member-link>
