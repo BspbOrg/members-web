@@ -3,7 +3,8 @@ var moduleName = 'bspb.nomenclatures'
 var nomenclatures = {
   membershipType: require('./plain/membershipType'),
   paymentType: require('./plain/paymentType'),
-  memberCategory: require('./plain/memberCategory')
+  memberCategory: require('./plain/memberCategory'),
+  membershipState: require('./plain/membershipState')
 }
 
 var mod = module.exports = require('angular')
