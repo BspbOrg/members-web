@@ -78,7 +78,7 @@
     "raven-js": "^3.27.0",
     "startbootstrap-sb-admin-2": "^3.3.7",
     "stringify": "^5.2.0",
-    "uglify-js": "^3.4.9",
+    "uglify-js": "^3.5.15",
     "ui-select": "^0.19.8"
   },
   "scripts": {
