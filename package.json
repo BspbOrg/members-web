@@ -55,7 +55,7 @@
     "angulartics-google-analytics": "^0.5.0",
     "autoprefixer": "^9.1.5",
     "bootstrap": "3.3.7",
-    "browserify": "^16.2.3",
+    "browserify": "^16.5.0",
     "browserify-ngannotate": "^2.0.0",
     "browserify-shim": "^3.8.14",
     "bulk-require": "^1.0.1",
