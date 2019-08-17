@@ -65,7 +65,7 @@
     "envify": "^4.1.0",
     "font-awesome": "^4.7.0",
     "form-data": "^2.3.2",
-    "less": "^3.8.1",
+    "less": "^3.10.0",
     "less-plugin-clean-css": "^1.5.1",
     "lodash.mapvalues": "^4.6.0",
     "minifyify": "^7.3.5",
