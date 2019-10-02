@@ -61,7 +61,7 @@
     "bulk-require": "^1.0.1",
     "bulkify": "^1.4.2",
     "clean-css": "^4.2.1",
-    "cross-env": "^5.2.0",
+    "cross-env": "^6.0.3",
     "envify": "^4.1.0",
     "font-awesome": "^4.7.0",
     "form-data": "^2.3.2",
